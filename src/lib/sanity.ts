@@ -12,4 +12,4 @@ export const client = createClient({
 export async function getProjects() {
 	const posts = await client.fetch('*[_type == "project"]')
 	return posts
-  }
+}
