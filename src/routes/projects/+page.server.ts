@@ -1,4 +1,4 @@
-import { getProjects, client } from '$lib/sanity';
+import { getProjects } from '$lib/sanity';
 
 export async function load() {
 	const data = await getProjects();
