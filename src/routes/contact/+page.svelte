@@ -3,10 +3,10 @@
 </script>
 
 <svelte:head>
-    <title>Home - Ethan McIntyre</title>
+    <title>Contact - Ethan McIntyre</title>
 </svelte:head>
 
-<h1 class="text-3xl font-bold underline">Hello world!</h1>
+<h1 class="text-3xl font-bold underline">Contact world!</h1>
 
 
 
