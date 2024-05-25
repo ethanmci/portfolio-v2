@@ -8,8 +8,6 @@
     function urlFor(source: string) {
         return builder.image(source)
     }
-
-    console.log(data)
 </script>
 
 <svelte:head>
