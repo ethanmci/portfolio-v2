@@ -6,7 +6,7 @@
   export let url: string;
 </script>
 
-<button class="h-auto flex group" tabindex="0" role="button">
+<button class="h-auto flex group" tabindex="0">
   <div class="relative bg-stone-50 text-stone-900 border-2 border-stone-50 group-hover:border-indigo-500 shadow-sm group-hover:shadow-lg transition-all ease-in-out">
     <div class="relative">
       <img src={image} alt="placeholder alt text" class="group-hover:sepia w-full mx-auto mb-4" />

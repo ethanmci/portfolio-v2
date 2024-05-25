@@ -16,9 +16,9 @@
     <title>Projects - Ethan McIntyre</title>
 </svelte:head>
 
-<div class="bg-gradient-to-b from-neutral-300 to-indigo-50 pt-4">
-    <h2 class="mb-4 mr-6 pl-14 font-bold text-3xl">Projects</h2>
-    <div class="grid grid-cols-3 gap-2 px-14 py-2">
+<div class="pt-4">
+    <h2 class="mb-4 mr-6 font-bold text-3xl">Projects</h2>
+    <div class="grid grid-cols-3 gap-2 py-2">
         {#each data?.projects as project}
         <ProjectTile
             url="" 
