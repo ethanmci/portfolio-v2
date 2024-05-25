@@ -32,7 +32,7 @@
                     id="email"
                     type="email"
                     class={`${form?.errors?.email ? 'border-red-700' : ''} border-2 p-2 rounded-sm border-stone-700 hover:border-indigo-700 focus:border-indigo-700 bg-white transition-all`}
-                    bind:value={name}
+                    bind:value={email}
                 />
             </div>
         </div>
