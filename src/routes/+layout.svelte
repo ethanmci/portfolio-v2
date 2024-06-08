@@ -44,12 +44,11 @@
 		<button><MenuIcon class="block md:hidden text-indigo-700" style="font-size:1.5em"/></button>
 	</nav>
 
-
 	<!-- todo: tweak/customize this? -->
 	{#key data.pathname}
 		<div
 			id="main-container"
-			class="flex grow w-full overflow-scroll"
+			class="flex grow w-full overflow-y-scroll overflow-x-hidden"
 			in:fade={{ duration: 300, delay: 400 }}
 			out:fade={{ duration: 300 }}
 		>

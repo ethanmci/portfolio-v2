@@ -9,6 +9,11 @@ export const client = createClient({
 })
 
 export async function getProjects() {
-	const posts = await client.fetch('*[_type == "project"]')
+	const posts = await client.fetch('*[_type == "project"] | order(date desc)')
 	return posts
+}
+
+export async function getBio() {
+	const bio = await client.fetch('*[_type == "textBlock" && title == "Main Page Bio"]')
+	return bio
 }
