@@ -15,7 +15,7 @@
 </svelte:head>
 
 <div class="py-8 px-4 md:px-32 mx-auto">
-    <h2 class="mb-4 md:mr-6 font-bold font-deco text-3xl lg:text-left text-center">Projects</h2>
+    <h2 class="mb-4 md:mr-6 font-bold font-deco text-5xl lg:text-left text-center">Projects</h2>
     <div class="grid grid-cols-3 gap-2 py-2">
         {#each data?.projects as project}
         <ProjectTile

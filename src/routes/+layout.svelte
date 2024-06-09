@@ -18,7 +18,7 @@
 			aria-current={$page.url.pathname === '/'}
 			href="/"
 			class={`
-				${$page.url.pathname === '/' ? 'text-orange-500 font-semibold underline-offset-4' : 'underline-offset-2'}
+				${$page.url.pathname === '/' ? 'text-indigo-900 font-semibold underline-offset-4' : 'underline-offset-1'}
 				hidden md:block text-xl text-indigo-700 underline hover:underline-offset-8 transition-all ease-in-out`
 			}
 			>home</a
@@ -27,7 +27,7 @@
 			aria-current={$page.url.pathname === '/projects'}
 			href="/projects"
 			class={`
-				${$page.url.pathname === '/projects' ? 'text-orange-500 font-semibold underline-offset-4' : 'underline-offset-2'}
+				${$page.url.pathname === '/projects' ? 'text-indigo-900 font-semibold underline-offset-4' : 'underline-offset-1'}
 				hidden md:block text-xl text-indigo-700 underline hover:underline-offset-8 transition-all ease-in-out`
 			}
 			>projects</a
@@ -36,7 +36,7 @@
 			aria-current={$page.url.pathname === '/contact'}
 			href="/contact"
 			class={`
-				${$page.url.pathname === '/contact' ? 'text-orange-500 font-semibold underline-offset-4' : 'underline-offset-2'}
+				${$page.url.pathname === '/contact' ? 'text-indigo-900 font-semibold underline-offset-4' : 'underline-offset-1'}
 				hidden md:block text-xl text-indigo-700 underline hover:underline-offset-8 transition-all ease-in-out`
 			}
 			>contact</a
