@@ -1,10 +1,18 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	export let form;
-	let name: string = '';
-	let email: string = '';
-	let title: string = '';
-	let message: string = '';
+	// initializing all varables at once
+	let name: string = '',
+		email: string = '',
+		title: string = '',
+		message: string = '';
+	let nameError: boolean = false,
+		emailError: boolean = false,
+		messageError: boolean = false;
+
+	const emailReg: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;	
+	$: nameError = name.length <= 0;
+	$: emailError = !emailReg.test(email);
+	$: messageError = message.length <= 0;
 </script>
 
 <svelte:head>
@@ -21,7 +29,7 @@
 					name="name"
 					id="name"
 					type="text"
-					class={`${form?.errors?.name ? 'border-red-700' : ''} border-2 p-2 rounded-sm border-stone-700 hover:border-indigo-700 focus:border-indigo-700 bg-white transition-all`}
+					class={`${nameError ? 'border-red-700' : 'border-stone-700'} border-2 p-2 rounded-sm bg-white transition-all`}
 					bind:value={name}
 				/>
 			</div>
@@ -31,27 +39,29 @@
 					name="email"
 					id="email"
 					type="email"
-					class={`${form?.errors?.email ? 'border-red-700' : ''} border-2 p-2 rounded-sm border-stone-700 hover:border-indigo-700 focus:border-indigo-700 bg-white transition-all`}
+					class={`${emailError ? 'border-red-700' : 'border-stone-700'} border-2 p-2 rounded-sm  bg-white transition-all`}
 					bind:value={email}
 				/>
 			</div>
 		</div>
 
-		<label for="title" placeholder="Message Title" class="font-bold">Title <span class="font-normal">(Optional)</span>:</label>
+		<label for="title" placeholder="Message Title" class="font-bold"
+			>Title <span class="font-normal">(Optional)</span>:</label
+		>
 		<input
 			name="title"
 			id="title"
 			type="text"
-			class={`border-2 p-2 mb-4 rounded-sm border-stone-700 hover:border-indigo-700 focus:border-indigo-700 bg-white transition-all`}
+			class={`border-2 p-2 mb-4 rounded-sm border-stone-700 bg-white transition-all`}
 			bind:value={title}
 		/>
 
-        <label for="message" placeholder="Message Title" class="font-bold">Message:</label>
+		<label for="message" placeholder="Message Title" class="font-bold">Message:</label>
 		<textarea
 			name="message"
 			id="name"
-            rows="10"
-            class={`border-2 p-2 mb-4 rounded-sm border-stone-700 hover:border-indigo-700 focus:border-indigo-700 bg-white transition-all`}
+			rows="10"
+			class={`${messageError ? 'border-red-700' : 'border-stone-700'} border-2 p-2 mb-4 rounded-sm bg-white transition-all`}
 			bind:value={message}
 		/>
 	</form>
