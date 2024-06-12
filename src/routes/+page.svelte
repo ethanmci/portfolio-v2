@@ -1,9 +1,9 @@
 <script lang="ts">
 	import ProjectTile from '$lib/components/ProjectTile.svelte';
 	import NameType from '$lib/assets/name_stacked.png';
-	import EthanImg from '$lib/assets/photo_of_me.jpg';
-	import GitHubIcon from 'virtual:icons/mdi/github-box';
-	import LinkedinIcon from 'virtual:icons/mdi/linkedin';
+	import EthanImg from '$lib/assets/photo_of_me.jpg'; // @ts-ignore (virtual: flags TS checker incorrectly)
+	import GitHubIcon from 'virtual:icons/mdi/github-box'; // @ts-ignore
+	import LinkedinIcon from 'virtual:icons/mdi/linkedin'; // @ts-ignore
 	import ForwardArrow from 'virtual:icons/ic/baseline-arrow-forward';
 	import { PortableText } from '@portabletext/svelte';
 	import type { PageData } from './$types';
@@ -19,23 +19,23 @@
 	class="h-full flex flex-col md:flex-row overflow-hidden bg-stone-50 transition-all ease-in-out"
 >
 	<div class="flex-grow-0 h-1/3 md:h-full md:w-1/3 overflow-hidden relative md:border-r-2">
-		<img class="object-cover md:h-full" src={EthanImg} alt="A photo of Ethan McIntyre" />
+		<img class="object-cover md:h-full" src={EthanImg} alt="Ethan McIntyre" />
 	</div>
 	<div class="grow my-auto p-4 md:p-32 text-xl">
 		<h2
-			class="text-5xl md:text-6xl font-deco font-bold italic underline mb-2 tracking-tight subpixel-antialiased"
+			class="text-5xl md:text-6xl font-deco font-bold italic underline text-stone-700 mb-2 tracking-tight subpixel-antialiased"
 		>
 			Hello!
 		</h2>
         <div id="bioContainer">
-            <PortableText value={data?.content[0]?.content || null}></PortableText>
+            <PortableText value={data?.content[0]?.content || undefined}></PortableText>
         </div>
 		<div class="flex text-3xl">
 			<a href="https://github.com/ethanmci" class="icon-link"
-				><GitHubIcon alt="GitHub link" class="hover:text-indigo-900 cursor-pointer"></GitHubIcon></a
+				><GitHubIcon title="GitHub link" alt="GitHub link" class="hover:text-indigo-900 cursor-pointer"></GitHubIcon></a
 			>
 			<a href="https://www.linkedin.com/in/ethansndrmc/" class="icon-link"
-				><LinkedinIcon alt="GitHub link" class="hover:text-indigo-900 cursor-pointer"
+				><LinkedinIcon title="LinkedInlink" alt="LinkedIn link" class="hover:text-indigo-900 cursor-pointer"
 				></LinkedinIcon></a
 			>
 		</div>
