@@ -64,5 +64,10 @@
 			class={`${messageError ? 'border-red-700' : 'border-stone-700'} border-2 p-2 mb-4 rounded-sm bg-white transition-all`}
 			bind:value={message}
 		/>
+		<input
+			class="flex font-deco font-bold p-2 w-1/3 text-stone-50 bg-indigo-700 hover:bg-indigo-900 hover:shadow-sm rounded-sm transition-all ease-in-out"
+			value="Submit"
+			type="submit"
+		/>
 	</form>
 </div>
