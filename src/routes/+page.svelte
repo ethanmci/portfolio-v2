@@ -23,7 +23,7 @@
 	</div>
 	<div class="grow my-auto p-4 md:p-32 text-xl">
 		<h2
-			class="text-5xl md:text-6xl font-deco font-bold italic underline text-stone-700 mb-2 tracking-tight subpixel-antialiased"
+			class="text-5xl md:text-6xl font-deco font-bold italic underline mb-2 tracking-tight subpixel-antialiased"
 		>
 			Hello!
 		</h2>

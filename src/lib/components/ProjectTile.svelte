@@ -14,7 +14,7 @@
 				<img src={image} alt="placeholder alt text" class="w-full mx-auto mb-4" />
 				<div class="absolute -bottom-4 flex w-full px-4 text-stone-50">
 					<span class="flex-1">
-						<h3 class="text-2xl text-left font-deco font-bold underline w-max p-2 bg-stone-700 rounded-sm shadow-sm max-w-72">
+						<h3 class="text-2xl text-left font-deco font-bold underline w-max p-2 bg-stone-700 rounded-sm shadow-sm max-w-64">
 							{title}
 						</h3>
 					</span>
