@@ -2,6 +2,7 @@
 import type { Actions } from "./$types";
 import * as EmailValidator from 'email-validator';
 import { SECRET_API_KEY } from '$env/static/private';
+import { error } from "@sveltejs/kit";
 
 export const actions = {
     submit: async ({ request }) => {
@@ -33,8 +34,16 @@ export const actions = {
             if (result.success) {
                 return { success: true } 
             } else {
-                return { success: false }
+                return error(400, "Bad Request");
             }
+        } else {
+            const errors: string[] = [];
+            if (name!.toString().length > 0) errors.push("Name");
+            if (message!.toString().length > 0) errors.push("Message");
+            if (EmailValidator.validate(email!.toString())) errors.push("Email");
+
+            const returnMessage: string = errors.join(", ");
+            return { success: false, returnMessage: returnMessage }
         }
     }
 } satisfies Actions

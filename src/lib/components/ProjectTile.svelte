@@ -1,11 +1,18 @@
 <script lang="ts">
+	import { fly } from "svelte/transition";
+	import { onMount } from "svelte";
+	import { quartInOut } from "svelte/easing";
 	export let title: string;
 	export let year: string;
 	export let desc: string;
 	export let image: string;
 	export let url: string;
+	export let transitionDelay: number;
+	let ready: boolean = false;
+    onMount(() => { ready = true })
 </script>
-<a href={url}>
+{#if ready}
+<a href={url} transition:fly={{ delay: 5 * (transitionDelay * 2), duration: 1000, y: 200, opacity: 0.0, easing: quartInOut }}>
 	<button class="h-auto md:h-full flex group col-span-3 md:col-span-1 mx-auto" tabindex="0">
 		<div
 			class="relative bg-stone-50 text-stone-900 border-2 border-stone-50 group-hover:border-indigo-500 shadow-sm group-hover:shadow-lg transition-all ease-in-out"
@@ -29,4 +36,5 @@
 		</div>
 	</button>
 </a>
+{/if}
 
