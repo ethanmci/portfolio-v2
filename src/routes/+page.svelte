@@ -24,7 +24,7 @@
 </svelte:head>
 
 <div
-	class="h-full flex flex-col md:flex-row overflow-hidden bg-stone-50 transition-all ease-in-out"
+	class="h-full w-full flex flex-col md:flex-row overflow-hidden bg-stone-50 transition-all ease-in-out"
 >
 	<div class="flex-grow-0 h-1/3 md:h-full md:w-1/3 overflow-hidden relative md:border-r-2">
 		{#if ready}
