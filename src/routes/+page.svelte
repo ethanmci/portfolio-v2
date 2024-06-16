@@ -49,7 +49,7 @@
 				class="mb-1"
 				transition:fly={{ delay: 100, duration: 1500, y: 200, opacity: 0.0, easing: quartInOut }}
 			>
-				<PortableText value={data?.content[0]?.content || undefined}></PortableText>
+				<PortableText components={{}} value={data?.content[0]?.content || undefined}></PortableText>
 			</div>
 			<div
 				class="flex text-3xl"

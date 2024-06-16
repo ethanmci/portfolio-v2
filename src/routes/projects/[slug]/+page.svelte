@@ -4,7 +4,8 @@
 	import type { InputValue } from '@portabletext/svelte';
 	import { PortableText } from '@portabletext/svelte';
 	import Tags from '$lib/components/Tags.svelte';
-	import BackArrow from 'virtual:icons/ic/baseline-arrow-back';
+    // @ts-ignore
+	import BackArrow from 'virtual:icons/ic/baseline-arrow-back'; 
 
 	export let data: PageData;
 </script>

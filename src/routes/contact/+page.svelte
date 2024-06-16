@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import { fade, fly } from 'svelte/transition'
 	import type { ActionData } from './$types';
+	// @ts-ignore
 	import ForwardArrow from 'virtual:icons/ic/baseline-arrow-forward';
 	import { quartInOut } from 'svelte/easing';
 	// initializing all varables at once
@@ -12,8 +13,6 @@
 	let nameError: boolean = false,
 		emailError: boolean = false,
 		messageError: boolean = false;
-
-	let ableToSubmit: boolean = false;
 
 	const emailReg: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;	
 	$: nameError = name.length <= 0;
