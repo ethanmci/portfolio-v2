@@ -1,7 +1,6 @@
 <script lang=ts>
     import ProjectTile from "$lib/components/ProjectTile.svelte";
     import { onMount } from "svelte";
-    import { fly } from "svelte/transition";
     import { urlFor } from "$lib/sanity";
     export let data;
 
