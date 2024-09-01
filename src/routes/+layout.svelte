@@ -67,7 +67,7 @@
 	{#if mobileMenuOpen === true}
 	<div 
 	transition:slide={{ delay: 0, duration: 300, easing: quintOut, axis: 'x' }}
-	class={`bg-indigo-700 absolute w-full h-full z-50 p-20`}>
+	class={`bg-indigo-700 absolute w-full h-full z-50 p-20 block md:hidden`}>
 		<button class="absolute right-4 top-4" on:click={() => ToggleMobileMenu(false)}><CloseIcon class="block md:hidden text-white hover:bg-red-700" style="font-size:2em"/></button>
 		<div class="flex flex-col gap-5">
 			<a
