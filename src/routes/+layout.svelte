@@ -1,13 +1,21 @@
-<script>
+<script lang="ts">
 	import '../app.css';
 	import { page } from '$app/stores';
-	import { fade } from 'svelte/transition';
+	import { fade, slide } from 'svelte/transition';
+	import { quintOut } from 'svelte/easing'
 	// @ts-ignore
-	import MenuIcon from 'virtual:icons/mdi/menu';
+	import MenuIcon from 'virtual:icons/mdi/menu'; 	// @ts-ignore
+	import CloseIcon from 'virtual:icons/mdi/close'; 
 	export let data;
+	let mobileMenuOpen: boolean;
+	$: mobileMenuOpen = false;
 
 	function OpenMenu() {
 		console.log('opened')
+	}
+
+	function ToggleMobileMenu(openVal: boolean) {
+		mobileMenuOpen = openVal;
 	}
 </script>
 <div class="h-full flex flex-col">
@@ -41,7 +49,7 @@
 			}
 			>contact</a
 		>
-		<button><MenuIcon class="block md:hidden  text-indigo-700" style="font-size:1.5em"/></button>
+		<button class="ml-auto" on:click={() => ToggleMobileMenu(true)}><MenuIcon class="block md:hidden  text-indigo-700" style="font-size:1.5em"/></button>
 	</nav>
 
 	<!-- todo: tweak/customize this? -->
@@ -56,6 +64,45 @@
 		</div>
 	{/key}
 
+	{#if mobileMenuOpen === true}
+	<div 
+	transition:slide={{ delay: 0, duration: 300, easing: quintOut, axis: 'x' }}
+	class={`bg-indigo-700 absolute w-full h-full z-50 p-20`}>
+		<button class="absolute right-4 top-4" on:click={() => ToggleMobileMenu(false)}><CloseIcon class="block md:hidden text-white hover:bg-red-700" style="font-size:2em"/></button>
+		<div class="flex flex-col gap-5">
+			<a
+			aria-current={$page.url.pathname === '/'}
+			href="/"
+			on:click={() => ToggleMobileMenu(false)}
+			class={`
+				${$page.url.pathname === '/' ? 'text-white font-bold underline-offset-4' : 'underline-offset-2'}
+				text-4xl text-gray-300 underline hover:underline-offset-8 transition-all ease-in-out`
+			}
+			>home</a
+		>
+		<a
+			aria-current={$page.url.pathname === '/projects'}
+			href="/projects"
+			on:click={() => ToggleMobileMenu(false)}
+			class={`
+				${$page.url.pathname === '/projects' ? 'text-white font-bold underline-offset-4' : 'underline-offset-2'}
+				text-4xl text-gray-300 underline hover:underline-offset-8 transition-all ease-in-out`
+			}
+			>projects</a
+		>
+		<a
+			aria-current={$page.url.pathname === '/contact'}
+			href="/contact"
+			on:click={() => ToggleMobileMenu(false)}
+			class={`
+				${$page.url.pathname === '/contact' ? 'text-white font-bold underline-offset-4' : 'underline-offset-2'}
+				text-4xl text-gray-300 underline hover:underline-offset-8 transition-all ease-in-out`
+			}
+			>contact</a
+		>
+		</div>
+	</div>
+	{/if}
 </div>
 
 <!-- Footer idea for now 
