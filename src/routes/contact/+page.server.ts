@@ -1,4 +1,4 @@
-// TODO: implemement proper actions for form submission
+// TODO: implement proper actions for form submission
 import type { Actions } from "./$types";
 import * as EmailValidator from 'email-validator';
 import { SECRET_API_KEY, SECRET_TURN_KEY } from '$env/static/private';
