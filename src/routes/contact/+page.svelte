@@ -5,7 +5,7 @@
 	// @ts-ignore
 	import ForwardArrow from 'virtual:icons/ic/baseline-arrow-forward';
 	import { quartInOut } from 'svelte/easing';
-	// initializing all varables at once
+	// initializing all variables at once
 	let name: string = '',
 		email: string = '',
 		title: string = '',
