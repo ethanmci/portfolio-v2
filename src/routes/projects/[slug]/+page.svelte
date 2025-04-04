@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import type { PageData } from './$types';
-	import type { InputValue } from '@portabletext/svelte';
 	import { PortableText } from '@portabletext/svelte';
 	import Tags from '$lib/components/Tags.svelte';
     // @ts-ignore
 	import BackArrow from 'virtual:icons/ic/baseline-arrow-back'; 
-
+	import Carousel from '$lib/components/Carousel.svelte';
+	
 	export let data: PageData;
+	console.log(data.project.carousel)
 </script>
 
 <div class="p-4 md:px-32 mx-auto py-4 h-full flex flex-col">
@@ -28,11 +28,11 @@
 	<!-- todo, get this to resize properly using flex :))) -->
 	<div class="w-full grow grid grid-cols-3 gap-4">
 		<!-- TODO: proper alt text -->
-		<div class="col-span-3 md:col-span-2"><img src={data.project.cover} alt="project cover" class="border-2 border-stone-50 object-contain" /></div>
+		<div class="col-span-3 md:col-span-2">
+			<Carousel images={[data.project.cover, ...data.project.carousel]}></Carousel>
+		</div>
 		<div class="col-span-3 md:col-span-1 bg-stone-50 overflow-y-scroll rounded-sm p-8">
-			<div class="relative min-h-full">
-				<PortableText value={data.project.content} components={{}}/>
-			</div>
+			<PortableText value={data.project.content} components={{}}/>
 		</div>
 	</div>
 </div>

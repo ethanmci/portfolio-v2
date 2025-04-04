@@ -6,6 +6,6 @@ import type { RequestHandler } from './$types';
 const builder = imageUrlBuilder(client)
 
 export const GET: RequestHandler = ({ url }) => {
-    const imgUrl: string = url.searchParams.get('imgUrl')?.toString()
+    const imgUrl: string = url.searchParams.get('imgUrl')?.toString() || ''
     return builder.image(imgUrl)
 }
