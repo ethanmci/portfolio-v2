@@ -10,7 +10,6 @@ function carouselConverter(arr: [{ asset: string }]) {
 
 export const load: PageServerLoad = async ({ params }) => {
 	const project = await getProject(params.slug)
-	console.log(project[0])
 	if (project && project.length === 1) {
 		return {
 			project: {

@@ -10,10 +10,6 @@
 	let mobileMenuOpen: boolean;
 	$: mobileMenuOpen = false;
 
-	function OpenMenu() {
-		console.log('opened');
-	}
-
 	function ToggleMobileMenu(openVal: boolean) {
 		mobileMenuOpen = openVal;
 	}
