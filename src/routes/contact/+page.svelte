@@ -2,6 +2,8 @@
 	import { enhance } from '$app/forms';
 	import { fade, fly } from 'svelte/transition'
 	import type { ActionData } from './$types';
+	import { PUBLIC_SITE_KEY } from '$env/static/public';
+	import { Turnstile } from 'svelte-turnstile'
 	// @ts-ignore
 	import ForwardArrow from 'virtual:icons/ic/baseline-arrow-forward';
 	import { quartInOut } from 'svelte/easing';
@@ -88,6 +90,7 @@
 			class={`${messageError ? 'border-red-700' : 'border-stone-700'} border-2 p-2 mb-4 rounded-sm bg-white transition-all`}
 			bind:value={message}
 		/>
+		<Turnstile siteKey={PUBLIC_SITE_KEY}/>
 		<input
 			class="flex font-deco font-bold p-2 w-1/3 text-stone-50 disabled:text-stone-300 bg-indigo-700 hover:bg-indigo-900 disabled:bg-stone-400 hover:shadow-sm cursor-pointer disabled:cursor-not-allowed rounded-sm transition-all ease-in-out"
 			value="Submit"
