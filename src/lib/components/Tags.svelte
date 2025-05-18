@@ -1,5 +1,9 @@
 <script lang="ts">
-export let tag;
+  interface Props {
+    tag: any;
+  }
+
+  let { tag }: Props = $props();
 
 function tagColour(tagValue: string): string {
   switch (tagValue?.toLocaleLowerCase() || "") {

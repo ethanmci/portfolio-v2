@@ -1,5 +1,5 @@
 <script lang="ts">
-import { page } from "$app/stores";
+import { page } from "$app/state";
 import type { PageData } from "./$types";
 import type { InputValue } from "@portabletext/svelte";
 import { PortableText } from "@portabletext/svelte";
@@ -7,7 +7,11 @@ import Tags from "$lib/components/Tags.svelte";
 // @ts-ignore
 import BackArrow from "virtual:icons/ic/baseline-arrow-back";
 
-export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 </script>
 
 <div class="p-4 md:px-32 mx-auto py-4 h-full flex flex-col">

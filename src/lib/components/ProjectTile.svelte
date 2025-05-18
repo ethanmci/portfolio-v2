@@ -2,13 +2,24 @@
 import { fly } from "svelte/transition";
 import { onMount } from "svelte";
 import { quartInOut } from "svelte/easing";
-export let title: string;
-export let year: string;
-export let desc: string;
-export let image: string;
-export let url: string;
-export let transitionDelay: number;
-let ready = false;
+	interface Props {
+		title: string;
+		year: string;
+		desc: string;
+		image: string;
+		url: string;
+		transitionDelay: number;
+	}
+
+	const {
+		title,
+		year,
+		desc,
+		image,
+		url,
+		transitionDelay
+	}: Props = $props();
+let ready = $state(false);
 onMount(() => {
   ready = true;
 });

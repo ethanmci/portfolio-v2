@@ -3,9 +3,16 @@
     import { onMount } from "svelte";
     import { urlFor } from "$lib/sanity";
     // biome-ignore lint/suspicious/noImplicitAnyLet: <explanation>
-    export let data;
+    interface Props {
+        data: {
+          projects?: unknown
+        }
+    }
 
-    let ready = false;
+    const { data }: Props = $props();
+    console.log(data)
+
+    let ready = $state(false);
     onMount(() => { ready = true })
 </script>
 

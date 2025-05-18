@@ -17,7 +17,9 @@ export const load: PageServerLoad = async ({ params }) => {
         links: project[0],
       },
     };
-  } else if (project.length > 1) {
+  }
+  
+  if (project.length > 1) {
     return error(400, "Invalid request");
   }
 

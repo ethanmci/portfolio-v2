@@ -1,14 +1,19 @@
 <script lang="ts">
 import "../app.css";
-import { page } from "$app/stores";
+import { page } from "$app/state";
 import { fade, slide } from "svelte/transition";
 import { quintOut } from "svelte/easing";
 // @ts-ignore
 import MenuIcon from "virtual:icons/mdi/menu"; // @ts-ignore
 import CloseIcon from "virtual:icons/mdi/close";
-export let data: { pathname: string; }
-let mobileMenuOpen: boolean;
-$: mobileMenuOpen = false;
+	interface Props {
+		data: { pathname: string; };
+		children?: import('svelte').Snippet;
+	}
+
+	let { data, children }: Props = $props();
+let mobileMenuOpen: boolean = $state(false);
+
 
 function OpenMenu() {
   console.log("opened");
@@ -32,30 +37,30 @@ function ToggleMobileMenu(openVal: boolean) {
 		>
 		<div class="hidden md:block h-1 w-16 mx-0 border-0 bg-black">&nbsp;</div>
 		<a
-			aria-current={$page.url.pathname === '/'}
+			aria-current={page.url.pathname === '/'}
 			href="/"
 			class={`
-				${$page.url.pathname === '/' ? 'text-indigo-900 font-semibold underline-offset-4' : 'underline-offset-1'}
+				${page.url.pathname === '/' ? 'text-indigo-900 font-semibold underline-offset-4' : 'underline-offset-1'}
 				hidden md:block text-xl text-indigo-700 underline hover:underline-offset-8 transition-all ease-in-out`}
 			>home</a
 		>
 		<a
-			aria-current={$page.url.pathname === '/projects'}
+			aria-current={page.url.pathname === '/projects'}
 			href="/projects"
 			class={`
-				${$page.url.pathname === '/projects' ? 'text-indigo-900 font-semibold underline-offset-4' : 'underline-offset-1'}
+				${page.url.pathname === '/projects' ? 'text-indigo-900 font-semibold underline-offset-4' : 'underline-offset-1'}
 				hidden md:block text-xl text-indigo-700 underline hover:underline-offset-8 transition-all ease-in-out`}
 			>projects</a
 		>
 		<a
-			aria-current={$page.url.pathname === '/contact'}
+			aria-current={page.url.pathname === '/contact'}
 			href="/contact"
 			class={`
-				${$page.url.pathname === '/contact' ? 'text-indigo-900 font-semibold underline-offset-4' : 'underline-offset-1'}
+				${page.url.pathname === '/contact' ? 'text-indigo-900 font-semibold underline-offset-4' : 'underline-offset-1'}
 				hidden md:block text-xl text-indigo-700 underline hover:underline-offset-8 transition-all ease-in-out`}
 			>contact</a
 		>
-		<button class="ml-auto" on:click={() => ToggleMobileMenu(true)}
+		<button class="ml-auto" onclick={() => ToggleMobileMenu(true)}
 			><MenuIcon class="block md:hidden  text-indigo-700" style="font-size:1.5em" /></button
 		>
 	</nav>
@@ -68,7 +73,7 @@ function ToggleMobileMenu(openVal: boolean) {
 			in:fade={{ duration: 300, delay: 400 }}
 			out:fade={{ duration: 300 }}
 		>
-			<slot />
+			{@render children?.()}
 		</div>
 	{/key}
 
@@ -77,7 +82,7 @@ function ToggleMobileMenu(openVal: boolean) {
 			transition:slide={{ delay: 0, duration: 300, easing: quintOut, axis: 'x' }}
 			class={`bg-indigo-700 absolute w-full h-full z-50 p-20 block md:hidden`}
 		>
-			<button class="absolute right-4 top-4" on:click={() => ToggleMobileMenu(false)}
+			<button class="absolute right-4 top-4" onclick={() => ToggleMobileMenu(false)}
 				><CloseIcon
 					class="block md:hidden text-white hover:bg-red-700"
 					style="font-size:2em"
@@ -85,27 +90,27 @@ function ToggleMobileMenu(openVal: boolean) {
 			>
 			<div class="flex flex-col gap-5">
 				<a
-					aria-current={$page.url.pathname === '/'}
+					aria-current={page.url.pathname === '/'}
 					href="/"
-					on:click={() => ToggleMobileMenu(false)}
+					onclick={() => ToggleMobileMenu(false)}
 					class={`
-				${$page.url.pathname === '/' ? 'text-white font-bold underline-offset-4' : 'underline-offset-2'}
+				${page.url.pathname === '/' ? 'text-white font-bold underline-offset-4' : 'underline-offset-2'}
 				text-4xl text-gray-300 underline hover:underline-offset-8 transition-all ease-in-out`}>home</a
 				>
 				<a
-					aria-current={$page.url.pathname === '/projects'}
+					aria-current={page.url.pathname === '/projects'}
 					href="/projects"
-					on:click={() => ToggleMobileMenu(false)}
+					onclick={() => ToggleMobileMenu(false)}
 					class={`
-				${$page.url.pathname === '/projects' ? 'text-white font-bold underline-offset-4' : 'underline-offset-2'}
+				${page.url.pathname === '/projects' ? 'text-white font-bold underline-offset-4' : 'underline-offset-2'}
 				text-4xl text-gray-300 underline hover:underline-offset-8 transition-all ease-in-out`}>projects</a
 				>
 				<a
-					aria-current={$page.url.pathname === '/contact'}
+					aria-current={page.url.pathname === '/contact'}
 					href="/contact"
-					on:click={() => ToggleMobileMenu(false)}
+					onclick={() => ToggleMobileMenu(false)}
 					class={`
-				${$page.url.pathname === '/contact' ? 'text-white font-bold underline-offset-4' : 'underline-offset-2'}
+				${page.url.pathname === '/contact' ? 'text-white font-bold underline-offset-4' : 'underline-offset-2'}
 				text-4xl text-gray-300 underline hover:underline-offset-8 transition-all ease-in-out`}>contact</a
 				>
 			</div>

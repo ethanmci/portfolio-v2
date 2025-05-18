@@ -10,9 +10,13 @@ import { fly } from "svelte/transition";
 import { backOut, quartInOut, quartOut } from "svelte/easing";
 import IconButton from "$lib/components/IconButton.svelte";
 
-export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
 
-let ready: boolean = false;
+	let { data }: Props = $props();
+
+let ready: boolean = $state(false);
 onMount(() => {
   ready = true;
 });
