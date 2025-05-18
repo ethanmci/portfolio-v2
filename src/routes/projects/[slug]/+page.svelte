@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import type { PageData } from './$types';
-	import type { InputValue } from '@portabletext/svelte';
-	import { PortableText } from '@portabletext/svelte';
-	import Tags from '$lib/components/Tags.svelte';
-    // @ts-ignore
-	import BackArrow from 'virtual:icons/ic/baseline-arrow-back'; 
+import { page } from "$app/stores";
+import type { PageData } from "./$types";
+import type { InputValue } from "@portabletext/svelte";
+import { PortableText } from "@portabletext/svelte";
+import Tags from "$lib/components/Tags.svelte";
+// @ts-ignore
+import BackArrow from "virtual:icons/ic/baseline-arrow-back";
 
-	export let data: PageData;
+export let data: PageData;
 </script>
 
 <div class="p-4 md:px-32 mx-auto py-4 h-full flex flex-col">

@@ -1,21 +1,21 @@
 <script lang="ts">
-	import EthanImg from '$lib/assets/photo_of_me.jpg'; // @ts-ignore (virtual: flags TS checker incorrectly)
-	import GitHubIcon from 'virtual:icons/mdi/github-box'; // @ts-ignore
-	import LinkedinIcon from 'virtual:icons/mdi/linkedin'; // @ts-ignore
-	import ForwardArrow from 'virtual:icons/ic/baseline-arrow-forward';
-	import { PortableText } from '@portabletext/svelte';
-	import type { PageData } from './$types';
-	import { onMount } from 'svelte';
-	import { fly } from 'svelte/transition';
-	import { backOut, quartInOut, quartOut } from 'svelte/easing';
-	import IconButton from '$lib/components/IconButton.svelte';
+import EthanImg from "$lib/assets/photo_of_me.jpg"; // @ts-ignore (virtual: flags TS checker incorrectly)
+import GitHubIcon from "virtual:icons/mdi/github-box"; // @ts-ignore
+import LinkedinIcon from "virtual:icons/mdi/linkedin"; // @ts-ignore
+import ForwardArrow from "virtual:icons/ic/baseline-arrow-forward";
+import { PortableText } from "@portabletext/svelte";
+import type { PageData } from "./$types";
+import { onMount } from "svelte";
+import { fly } from "svelte/transition";
+import { backOut, quartInOut, quartOut } from "svelte/easing";
+import IconButton from "$lib/components/IconButton.svelte";
 
-	export let data: PageData;
+export let data: PageData;
 
-	let ready: boolean = false;
-	onMount(() => {
-		ready = true;
-	});
+let ready: boolean = false;
+onMount(() => {
+  ready = true;
+});
 </script>
 
 <svelte:head>

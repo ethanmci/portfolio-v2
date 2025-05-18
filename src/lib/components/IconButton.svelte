@@ -1,10 +1,12 @@
 <script lang="ts">
-    import { fly } from 'svelte/transition'
-    import { quartInOut } from 'svelte/easing'
-    export let url: string = ''
-    // Valid colour verification? in the future
-    export let colour: string = '' 
-    // TODO: height control! 
+import { fly } from "svelte/transition";
+import { quartInOut } from "svelte/easing";
+// biome-ignore lint/style/useConst: <explanation>
+export let url = "";
+// Valid colour verification? in the future
+// biome-ignore lint/style/useConst: <explanation>
+export let colour = "";
+// TODO: height control!
 </script>
 
 <a href={ url } class="flex flex-1">
