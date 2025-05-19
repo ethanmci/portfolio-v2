@@ -1,22 +1,18 @@
 <script lang="ts">
-	import '../app.css';
-	import { page } from '$app/stores';
-	import { fade, slide } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
-	// @ts-ignore
-	import MenuIcon from 'virtual:icons/mdi/menu'; // @ts-ignore
-	import CloseIcon from 'virtual:icons/mdi/close';
-	export let data;
-	let mobileMenuOpen: boolean;
-	$: mobileMenuOpen = false;
+import "../app.css";
+import { page } from "$app/stores";
+import { fade, slide } from "svelte/transition";
+import { quintOut } from "svelte/easing";
+// @ts-ignore
+import MenuIcon from "virtual:icons/mdi/menu"; // @ts-ignore
+import CloseIcon from "virtual:icons/mdi/close";
+export let data;
+let mobileMenuOpen: boolean;
+$: mobileMenuOpen = false;
 
-	function OpenMenu() {
-		console.log('opened');
-	}
-
-	function ToggleMobileMenu(openVal: boolean) {
-		mobileMenuOpen = openVal;
-	}
+function ToggleMobileMenu(openVal: boolean) {
+  mobileMenuOpen = openVal;
+}
 </script>
 
 <div class="h-full flex flex-col">
@@ -113,7 +109,7 @@
 	{/if}
 </div>
 
-<!-- Footer idea for now 
+<!-- Footer idea for now
 <footer class="flex items-center px-14 py-6 border-b-2 bg-white gap-4"></footer>
 -->
 

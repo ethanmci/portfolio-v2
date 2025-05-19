@@ -1,29 +1,31 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import { fade, fly } from 'svelte/transition'
-	import type { ActionData } from './$types';
-	import { PUBLIC_SITE_KEY } from '$env/static/public';
-	import { Turnstile } from 'svelte-turnstile'
-	// @ts-ignore
-	import ForwardArrow from 'virtual:icons/ic/baseline-arrow-forward';
-	import { quartInOut } from 'svelte/easing';
-	// initializing all variables at once
-	let name: string = '',
-		email: string = '',
-		title: string = '',
-		message: string = '';
-	let nameError: boolean = false,
-		emailError: boolean = false,
-		messageError: boolean = false;
+import { enhance } from "$app/forms";
+import { fade, fly } from "svelte/transition";
+import type { ActionData } from "./$types";
+import { PUBLIC_SITE_KEY } from "$env/static/public";
+import { Turnstile } from "svelte-turnstile";
+// @ts-ignore
+import ForwardArrow from "virtual:icons/ic/baseline-arrow-forward";
+import { quartInOut } from "svelte/easing";
+// initializing all variables
+let name = "";
+let email = "";
+let title = "";
+let message = "";
+let nameError = false;
+let emailError = false;
+let messageError = false;
 
-	const emailReg: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;	
-	$: nameError = name.length <= 0;
-	$: emailError = !emailReg.test(email);
-	$: messageError = message.length <= 0;
+const emailReg: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+$: nameError = name.length <= 0;
+$: emailError = !emailReg.test(email);
+$: messageError = message.length <= 0;
 
-	let truthTest = (e: boolean) => {return e}
+const truthTest = (e: boolean) => {
+  return e;
+};
 
-	export let form: ActionData;
+export let form: ActionData;
 </script>
 
 <svelte:head>
