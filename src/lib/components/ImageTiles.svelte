@@ -10,7 +10,7 @@
 </script>
 
 <!-- svelte-ignore a11y-img-redundant-alt -->
-<img class="border-2 border-stone-50" alt="project image" src={cover} />
+<button on:click={() => openImage(cover)}><img class="border-2 border-stone-50 object-cover w-full h-full cursor-pointer hover:opacity-80 hover:hue-rotate-50 hover:border-indigo-500" alt="project image" src={cover} /></button>
 {#if images.length > 0}
 	<div class="grid grid-cols-3 gap-2 mt-2">
 		{#each images as image, i}

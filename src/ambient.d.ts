@@ -1,4 +1,5 @@
 interface SelectedImage {
     isSelected: boolean, 
-    image: string | null
+    image: string | null,
+    alt?: string
 }

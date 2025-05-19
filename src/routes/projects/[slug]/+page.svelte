@@ -19,8 +19,7 @@
 </script>
 
 {#if selectedImage.isSelected && selectedImage.image != null}
-<!--  -->
-	<button tabindex="0" on:click={() => { selectedImage.isSelected = false}} class="z-45 group/close absolute flex h-full w-full overflow-hidden bg-stone-700/75 items-center justify-center">
+	<button tabindex="0" on:click={() => { selectedImage.isSelected = false}} class="z-40 group/close absolute flex h-full w-full overflow-hidden bg-stone-700/75 items-center justify-center">
 		<div class="absolute right-10 top-10"
 			><CloseIcon
 				class="block text-white group-hover/close:bg-red-700"
@@ -29,7 +28,7 @@
 		<!-- svelte-ignore a11y-missing-attribute -->
 
 		<img
-			class="border-2 border-stone-50 object-cover h-2/3"
+			class="z-50 border-2 border-stone-50 object-cover h-2/3"
 			src={selectedImage.image}
 		/>
 	</button>
