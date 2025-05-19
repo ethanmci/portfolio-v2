@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.noise-bg /* resulting css */
+.noise-bg
 {
   background:
 	linear-gradient(0deg, oklch(26.8% 0.007 34.298 / .5), oklch(70.9% 0.01 56.259 / .1)),
