@@ -1,14 +1,14 @@
 <script lang="ts">
-import EthanImg from "$lib/assets/photo_of_me.jpg"; // @ts-ignore (virtual: flags TS checker incorrectly)
-import GitHubIcon from "virtual:icons/mdi/github-box"; // @ts-ignore
-import LinkedinIcon from "virtual:icons/mdi/linkedin"; // @ts-ignore
-import ForwardArrow from "virtual:icons/ic/baseline-arrow-forward";
-import { PortableText } from "@portabletext/svelte";
-import type { PageData } from "./$types";
-import { onMount } from "svelte";
-import { fly } from "svelte/transition";
-import { backOut, quartInOut, quartOut } from "svelte/easing";
-import IconButton from "$lib/components/IconButton.svelte";
+	import EthanImg from '$lib/assets/photo_of_me.jpg'; // @ts-ignore (virtual: flags TS checker incorrectly)
+	import GitHubIcon from 'virtual:icons/mdi/github-box'; // @ts-ignore
+	import LinkedinIcon from 'virtual:icons/mdi/linkedin'; // @ts-ignore
+	import ForwardArrow from 'virtual:icons/ic/baseline-arrow-forward';
+	import { PortableText } from '@portabletext/svelte';
+	import type { PageData } from './$types';
+	import { onMount } from 'svelte';
+	import { fly } from 'svelte/transition';
+	import { backOut, quartInOut, quartOut } from 'svelte/easing';
+	import IconButton from '$lib/components/IconButton.svelte';
 
 export let data: PageData;
 
@@ -59,7 +59,7 @@ onMount(() => {
 			</a>
 			<div
 				class="flex gap-4 w-full my-4"
-			>	
+			>
 				<IconButton url="https://github.com/ethanmci" colour="stone"><GitHubIcon class="text-2xl mr-4 my-auto"/>GitHub</IconButton>
 				<IconButton url="https://www.linkedin.com/in/ethansndrmc/" colour="stone"><LinkedinIcon class="text-2xl mr-4 my-auto" />LinkedIn</IconButton>
 			</div>
@@ -68,7 +68,7 @@ onMount(() => {
 </div>
 
 <style lang="postcss">
-	
+
 	:global(#bioContainer a):not(.icon-link) {
 		text-decoration: underline;
 		color: theme(colors.indigo.700);
