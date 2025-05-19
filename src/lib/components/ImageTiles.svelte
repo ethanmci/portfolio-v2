@@ -1,12 +1,12 @@
 <script lang="ts">
-	export let cover: string;
-	export let images: string[];
-	export let selectedImage: SelectedImage;
+export let cover: string;
+export let images: string[];
+export let selectedImage: SelectedImage;
 
-	const openImage = (image: string) => {
-		selectedImage.image = image;
-		selectedImage.isSelected = true;
-	};
+const openImage = (image: string) => {
+  selectedImage.image = image;
+  selectedImage.isSelected = true;
+};
 </script>
 
 <!-- svelte-ignore a11y-img-redundant-alt -->

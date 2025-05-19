@@ -1,12 +1,14 @@
 <script lang="ts">
-    import ProjectTile from "$lib/components/ProjectTile.svelte";
-    import { onMount } from "svelte";
-    import { urlFor } from "$lib/sanity";
-    // biome-ignore lint/suspicious/noImplicitAnyLet: <explanation>
-    export let data;
+import ProjectTile from "$lib/components/ProjectTile.svelte";
+import { onMount } from "svelte";
+import { urlFor } from "$lib/sanity";
+// biome-ignore lint/suspicious/noImplicitAnyLet: <explanation>
+export let data;
 
-    let ready = false;
-    onMount(() => { ready = true })
+let ready = false;
+onMount(() => {
+  ready = true;
+});
 </script>
 
 <svelte:head>

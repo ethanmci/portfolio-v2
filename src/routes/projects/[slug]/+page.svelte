@@ -1,21 +1,20 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-	import { PortableText } from '@portabletext/svelte';
-	import Tags from '$lib/components/Tags.svelte';
-	// @ts-ignore TODO: fix virtual:icons issue
-	import BackArrow from 'virtual:icons/ic/baseline-arrow-back';
-	// @ts-ignore
-	import CloseIcon from 'virtual:icons/mdi/close';
-	import ImageTiles from '$lib/components/ImageTiles.svelte';
+import type { PageData } from "./$types";
+import { PortableText } from "@portabletext/svelte";
+import Tags from "$lib/components/Tags.svelte";
+// @ts-ignore TODO: fix virtual:icons issue
+import BackArrow from "virtual:icons/ic/baseline-arrow-back";
+// @ts-ignore
+import CloseIcon from "virtual:icons/mdi/close";
+import ImageTiles from "$lib/components/ImageTiles.svelte";
 
+export let data: PageData;
+let selectedImage: SelectedImage = {
+  isSelected: false,
+  image: null,
+};
 
-	export let data: PageData;
-	let selectedImage: SelectedImage = {
-		isSelected: false,
-		image: null
-	};
-
-	$: console.log(selectedImage)
+$: console.log(selectedImage);
 </script>
 
 {#if selectedImage.isSelected && selectedImage.image != null}

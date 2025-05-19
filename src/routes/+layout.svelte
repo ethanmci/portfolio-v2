@@ -1,14 +1,14 @@
 <script lang="ts">
-	import '../app.css';
-	import { page } from '$app/stores';
-	import { fade, slide } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
-	// @ts-ignore
-	import MenuIcon from 'virtual:icons/mdi/menu'; // @ts-ignore
-	import CloseIcon from 'virtual:icons/mdi/close';
-	export let data;
-	let mobileMenuOpen: boolean;
-	$: mobileMenuOpen = false;
+import "../app.css";
+import { page } from "$app/stores";
+import { fade, slide } from "svelte/transition";
+import { quintOut } from "svelte/easing";
+// @ts-ignore
+import MenuIcon from "virtual:icons/mdi/menu"; // @ts-ignore
+import CloseIcon from "virtual:icons/mdi/close";
+export let data;
+let mobileMenuOpen: boolean;
+$: mobileMenuOpen = false;
 
 function ToggleMobileMenu(openVal: boolean) {
   mobileMenuOpen = openVal;
