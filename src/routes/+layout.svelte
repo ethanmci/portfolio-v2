@@ -1,6 +1,7 @@
 <script lang="ts">
 import "../app.css";
 import { page } from "$app/stores";
+//import { page } from "$app/state";
 import { fade, slide } from "svelte/transition";
 import { quintOut } from "svelte/easing";
 // @ts-ignore
@@ -60,7 +61,9 @@ function ToggleMobileMenu(openVal: boolean) {
 	{#key data.pathname}
 		<div
 			id="main-container"
-			class="flex grow w-full overflow-y-scroll overflow-x-hidden m-0"
+			class={`flex grow w-full
+      ${$page.url.pathname === '/projects' ? 'flex-col' : ''}
+      overflow-y-scroll overflow-x-hidden m-0 `}
 			in:fade={{ duration: 300, delay: 400 }}
 			out:fade={{ duration: 300 }}
 		>
