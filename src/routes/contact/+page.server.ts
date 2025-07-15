@@ -2,7 +2,7 @@
 import type { Actions } from "./$types";
 import * as EmailValidator from "email-validator";
 import { SECRET_API_KEY, SECRET_TURN_KEY } from "$env/static/private";
-import { error } from "@sveltejs/kit";
+import { error, fail } from "@sveltejs/kit";
 
 interface TokenValidateResponse {
   "error-codes": string[];
@@ -51,11 +51,14 @@ export const actions = {
       SECRET_TURN_KEY,
     );
 
+    if (!name) return fail(400, { name, missing: true });
+    if (!email) return fail(400, { email, missing: true });
+    if (!message) return fail(400, { message, missing: true });
+
     if (
-      name!.toString().length > 0 &&
-      EmailValidator.validate(email!.toString()) &&
-      message!.toString().length > 0 &&
-      tokenSuccess
+      name?.toString().length &&
+      EmailValidator.validate(email?.toString()) &&
+      message?.toString().length
     ) {
       // sending the message now
       data.append("site", "ethanmc.xyz");
@@ -75,20 +78,22 @@ export const actions = {
       const result = await response.json();
       if (result.success) {
         return { success: true };
-      } else {
-        return error(400, "Bad Request");
       }
-    } else if (tokenSuccess) {
+
+      return error(400, "Bad Request");
+    }
+
+    if (tokenSuccess) {
       const errors: string[] = [];
-      if (name!.toString().length > 0) errors.push("Name");
-      if (message!.toString().length > 0) errors.push("Message");
-      if (EmailValidator.validate(email!.toString())) errors.push("Email");
+      if (name?.toString().length ?? true) errors.push("Name");
+      if (message?.toString().length ?? true) errors.push("Message");
+      if (EmailValidator.validate(email?.toString() ?? ""))
+        errors.push("Email");
 
       const returnMessage: string = errors.join(", ");
       return { success: false, returnMessage: returnMessage };
-    } else {
-      const returnMessage: string = tokenError?.toString() || "Invalid CAPTCHA";
-      return { success: false, returnMessage: returnMessage };
     }
+    const returnMessage: string = tokenError?.toString() || "Invalid CAPTCHA";
+    return { success: false, returnMessage: returnMessage };
   },
 } satisfies Actions;

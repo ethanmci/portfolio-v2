@@ -1,31 +1,27 @@
 <script lang="ts">
+import { run } from "svelte/legacy";
 import { enhance } from "$app/forms";
 import { fade, fly } from "svelte/transition";
 import type { ActionData } from "./$types";
 import { PUBLIC_SITE_KEY } from "$env/static/public";
-import { Turnstile } from "svelte-turnstile";
 // @ts-ignore
 import ForwardArrow from "virtual:icons/ic/baseline-arrow-forward";
 import { quartInOut } from "svelte/easing";
 // initializing all variables
-let name = "";
-let email = "";
-let title = "";
-let message = "";
-let nameError = false;
-let emailError = false;
-let messageError = false;
-
 const emailReg: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-$: nameError = name.length <= 0;
-$: emailError = !emailReg.test(email);
-$: messageError = message.length <= 0;
+let name = $state("");
+let email = $state("");
+let title = $state("");
+let message = $state("");
+const nameError = $derived(name.length <= 0);
+const emailError = $derived(!emailReg.test(email));
+const messageError = $derived(message.length <= 0);
 
-const truthTest = (e: boolean) => {
-  return e;
-};
+interface Props {
+  form: ActionData;
+}
 
-export let form: ActionData;
+const { form }: Props = $props();
 </script>
 
 <svelte:head>
@@ -46,7 +42,7 @@ export let form: ActionData;
 {:else}
 <div class="w-2/3 mx-auto pt-6" transition:fade>
 	<h2 class="mb-4 font-bold font-deco text-5xl lg:text-left text-center">Contact</h2>
-	{#if form?.returnMessage && !form?.success} 
+	{#if form?.returnMessage && !form?.success}
 		<p transition:fade class="text-lg bg-red-500 p-2 my-1">Invalid fields: { form?.returnMessage }</p>
 	{/if}
 	<form method="post" class="flex flex-col" action="?/submit" use:enhance>
@@ -91,8 +87,7 @@ export let form: ActionData;
 			rows="10"
 			class={`${messageError ? 'border-red-700' : 'border-stone-700'} border-2 p-2 mb-4 rounded-sm bg-white transition-all`}
 			bind:value={message}
-		/>
-		<Turnstile siteKey={PUBLIC_SITE_KEY}/>
+		></textarea>
 		<input
 			class="flex font-deco font-bold p-2 w-1/3 text-stone-50 disabled:text-stone-300 bg-indigo-700 hover:bg-indigo-900 disabled:bg-stone-400 hover:shadow-sm cursor-pointer disabled:cursor-not-allowed rounded-sm transition-all ease-in-out"
 			value="Submit"
@@ -102,4 +97,3 @@ export let form: ActionData;
 	</form>
 </div>
 {/if}
-

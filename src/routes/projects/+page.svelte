@@ -2,10 +2,17 @@
 import ProjectTile from "$lib/components/ProjectTile.svelte";
 import { onMount } from "svelte";
 import { urlFor } from "$lib/sanity";
-// biome-ignore lint/suspicious/noImplicitAnyLet: <explanation>
-export let data;
+import type { PageData } from "./$types";
 
-let ready = false;
+interface Props {
+  data: {
+    projects: Project[]
+  };
+}
+
+const { data }: Props = $props();
+
+let ready = $state(false);
 onMount(() => {
   ready = true;
 });

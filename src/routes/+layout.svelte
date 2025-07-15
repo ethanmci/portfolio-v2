@@ -7,9 +7,8 @@ import { quintOut } from "svelte/easing";
 // @ts-ignore
 import MenuIcon from "virtual:icons/mdi/menu"; // @ts-ignore
 import CloseIcon from "virtual:icons/mdi/close";
-export let data;
-let mobileMenuOpen: boolean;
-$: mobileMenuOpen = false;
+const { data, children } = $props();
+let mobileMenuOpen: boolean = $state(false);
 
 function ToggleMobileMenu(openVal: boolean) {
   mobileMenuOpen = openVal;
@@ -52,12 +51,11 @@ function ToggleMobileMenu(openVal: boolean) {
 				hidden md:block text-xl text-indigo-700 underline hover:underline-offset-8 transition-all ease-in-out`}
 			>contact</a
 		>
-		<button class="ml-auto" on:click={() => ToggleMobileMenu(true)}
+		<button class="ml-auto" onclick={() => ToggleMobileMenu(true)}
 			><MenuIcon class="block md:hidden  text-indigo-700" style="font-size:1.5em" /></button
 		>
 	</nav>
 
-	<!-- todo: tweak/customize this? -->
 	{#key data.pathname}
 		<div
 			id="main-container"
@@ -67,7 +65,7 @@ function ToggleMobileMenu(openVal: boolean) {
 			in:fade={{ duration: 300, delay: 400 }}
 			out:fade={{ duration: 300 }}
 		>
-			<slot />
+			{@render children?.()}
 		</div>
 	{/key}
 
@@ -76,7 +74,7 @@ function ToggleMobileMenu(openVal: boolean) {
 			transition:slide={{ delay: 0, duration: 300, easing: quintOut, axis: 'x' }}
 			class={`bg-indigo-700 absolute w-full h-full z-50 p-20 block md:hidden`}
 		>
-			<button class="absolute right-4 top-4" on:click={() => ToggleMobileMenu(false)}
+			<button class="absolute right-4 top-4" onclick={() => ToggleMobileMenu(false)}
 				><CloseIcon
 					class="block md:hidden text-white hover:bg-red-700"
 					style="font-size:2em"
@@ -86,7 +84,7 @@ function ToggleMobileMenu(openVal: boolean) {
 				<a
 					aria-current={$page.url.pathname === '/'}
 					href="/"
-					on:click={() => ToggleMobileMenu(false)}
+					onclick={() => ToggleMobileMenu(false)}
 					class={`
 				${$page.url.pathname === '/' ? 'text-white font-bold underline-offset-4' : 'underline-offset-2'}
 				text-4xl text-gray-300 underline hover:underline-offset-8 transition-all ease-in-out`}>home</a
@@ -94,7 +92,7 @@ function ToggleMobileMenu(openVal: boolean) {
 				<a
 					aria-current={$page.url.pathname === '/projects'}
 					href="/projects"
-					on:click={() => ToggleMobileMenu(false)}
+					onclick={() => ToggleMobileMenu(false)}
 					class={`
 				${$page.url.pathname === '/projects' ? 'text-white font-bold underline-offset-4' : 'underline-offset-2'}
 				text-4xl text-gray-300 underline hover:underline-offset-8 transition-all ease-in-out`}>projects</a
@@ -102,7 +100,7 @@ function ToggleMobileMenu(openVal: boolean) {
 				<a
 					aria-current={$page.url.pathname === '/contact'}
 					href="/contact"
-					on:click={() => ToggleMobileMenu(false)}
+					onclick={() => ToggleMobileMenu(false)}
 					class={`
 				${$page.url.pathname === '/contact' ? 'text-white font-bold underline-offset-4' : 'underline-offset-2'}
 				text-4xl text-gray-300 underline hover:underline-offset-8 transition-all ease-in-out`}>contact</a

@@ -1,5 +1,5 @@
 <script lang="ts">
-export let tag;
+const { tag }: { tag: string } = $props();
 
 function tagColour(tagValue: string): string {
   switch (tagValue?.toLocaleLowerCase() || "") {
