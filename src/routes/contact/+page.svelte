@@ -1,10 +1,7 @@
 <script lang="ts">
-import { run } from "svelte/legacy";
 import { enhance } from "$app/forms";
 import { fade, fly } from "svelte/transition";
 import type { ActionData } from "./$types";
-import { PUBLIC_SITE_KEY } from "$env/static/public";
-// @ts-ignore
 import ForwardArrow from "virtual:icons/ic/baseline-arrow-forward";
 import { quartInOut } from "svelte/easing";
 // initializing all variables

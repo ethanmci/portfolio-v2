@@ -1,5 +1,4 @@
 <script lang="ts">
-import { run } from "svelte/legacy";
 import type { PageData } from "./$types";
 import { PortableText } from "@portabletext/svelte";
 import Tags from "$lib/components/Tags.svelte";
@@ -10,21 +9,18 @@ import CloseIcon from "virtual:icons/mdi/close";
 import ImageTiles from "$lib/components/ImageTiles.svelte";
 
 interface Props {
-  data: PageData;
+	data: PageData;
 }
 
 const { data }: Props = $props();
 let selectedImage: SelectedImage = $state({
-  isSelected: false,
-  image: null,
+	isSelected: false,
+	image: null,
 });
 
-run(() => {
-  console.log(selectedImage);
-});
 </script>
 
-{#if selectedImage.isSelected && selectedImage.image != null}
+{#if selectedImage.isSelected && selectedImage.image !== null}
 	<button tabindex="0" onclick={() => { selectedImage.isSelected = false}} class="z-40 group/close absolute flex h-full w-full overflow-hidden bg-stone-700/75 items-center justify-center">
 		<div class="absolute right-10 top-10"
 			><CloseIcon

@@ -17,20 +17,23 @@
 <button onclick={() => openImage(cover)}
   ><img
     class="border-2 border-stone-50 object-cover w-full h-full cursor-pointer hover:opacity-80 hover:hue-rotate-50 hover:border-indigo-500"
-    alt="project image"
+    alt="Project image"
     src={cover}
   /></button
 >
 {#if images.length > 0}
   <div class="grid grid-cols-3 gap-2 mt-2">
     {#each images as image, i}
+
       <button
+        type="button"
+        aria-label={`Project image #${i}`}
         onclick={() => openImage(image)}
         class={`col-span-${i % 3 === 0 ? "1" : "2"} group-hover:shadow-lg`}
       >
-        <!-- svelte-ignore a11y_missing_attribute -->
         <img
           class="border-2 border-stone-50 object-cover w-full h-full cursor-pointer hover:opacity-80 hover:hue-rotate-50 hover:border-indigo-500"
+          alt={image}
           src={image}
         />
       </button>
