@@ -8,23 +8,26 @@ import BackArrow from "virtual:icons/ic/baseline-arrow-back";
 import CloseIcon from "virtual:icons/mdi/close";
 import ImageTiles from "$lib/components/ImageTiles.svelte";
 
-export let data: PageData;
-let selectedImage: SelectedImage = {
-  isSelected: false,
-  image: null,
-};
+interface Props {
+	data: PageData;
+}
 
-$: console.log(selectedImage);
+const { data }: Props = $props();
+let selectedImage: SelectedImage = $state({
+	isSelected: false,
+	image: null,
+});
+
 </script>
 
-{#if selectedImage.isSelected && selectedImage.image != null}
-	<button tabindex="0" on:click={() => { selectedImage.isSelected = false}} class="z-40 group/close absolute flex h-full w-full overflow-hidden bg-stone-700/75 items-center justify-center">
+{#if selectedImage.isSelected && selectedImage.image !== null}
+	<button tabindex="0" onclick={() => { selectedImage.isSelected = false}} class="z-40 group/close absolute flex h-full w-full overflow-hidden bg-stone-700/75 items-center justify-center">
 		<div class="absolute right-10 top-10"
 			><CloseIcon
 				class="block text-white group-hover/close:bg-red-700"
 				style="font-size:2em"
 			/></div>
-		<!-- svelte-ignore a11y-missing-attribute -->
+		<!-- svelte-ignore a11y_missing_attribute -->
 
 		<img
 			class="z-50 border-2 border-stone-50 object-cover h-2/3"
@@ -45,10 +48,9 @@ $: console.log(selectedImage);
 	</h2>
 	<div class="flex flex-row gap-2 mb-2">
 		{#each data.project.tags as tag}
-			<Tags {tag}></Tags>
+			<Tags tag={tag}></Tags>
 		{/each}
 	</div>
-	<!-- todo, get this to resize properly using flex :))) -->
 	<div class="w-full grow grid grid-cols-3 gap-4">
 		<!-- TODO: proper alt text -->
 		<div class="col-span-3 md:col-span-2">

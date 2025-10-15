@@ -10,6 +10,11 @@ function carouselConverter(arr: [{ asset: string }]) {
 
 export const load: PageServerLoad = async ({ params }) => {
   const project = await getProject(params.slug);
+
+  if (project.length > 1) {
+    return error(400, "Invalid request");
+  }
+
   if (project && project.length === 1) {
     return {
       project: {
@@ -23,8 +28,6 @@ export const load: PageServerLoad = async ({ params }) => {
         links: project[0].links,
       },
     };
-  } else if (project.length > 1) {
-    return error(400, "Invalid request");
   }
 
   error(404, "Not found");
