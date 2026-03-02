@@ -1,128 +1,96 @@
 <script lang="ts">
-import "../app.css";
-import { page } from "$app/stores";
-//import { page } from "$app/state";
-import { fade, slide } from "svelte/transition";
-import { quintOut } from "svelte/easing";
-// @ts-ignore
-import MenuIcon from "virtual:icons/mdi/menu"; // @ts-ignore
-import CloseIcon from "virtual:icons/mdi/close";
-const { data, children } = $props();
-let mobileMenuOpen: boolean = $state(false);
+  import "../app.css";
+  import { page } from "$app/state";
+  import { fade, slide } from "svelte/transition";
+  import { quintOut } from "svelte/easing";
+  // @ts-ignore
+  import MenuIcon from "virtual:icons/mdi/menu"; // @ts-ignore
+  import CloseIcon from "virtual:icons/mdi/close";
+  const { data, children } = $props();
+  let mobileMenuOpen: boolean = $state(false);
 
-function ToggleMobileMenu(openVal: boolean) {
-  mobileMenuOpen = openVal;
-}
+  function ToggleMobileMenu(openVal: boolean) {
+    mobileMenuOpen = openVal;
+  }
 </script>
 
-<div class="h-full flex flex-col">
-	<nav
-		class="flex grow-0 flex-wrap items-center px-4 md:px-32 py-2 md:py-4 lg:py-6 border-b-2 bg-white gap-4 w-full"
-	>
-		<a href="/" class=""
-			><h1
-				class="text-2xl md:text-4xl italic font-bold font-deco hover:text-indigo-700 transition-all ease-in-out"
-			>
-				Ethan McIntyre
-			</h1></a
-		>
-		<div class="hidden md:block h-1 w-16 mx-0 border-0 bg-black">&nbsp;</div>
-		<a
-			aria-current={$page.url.pathname === '/'}
-			href="/"
-			class={`
-				${$page.url.pathname === '/' ? 'text-indigo-900 font-semibold underline-offset-4' : 'underline-offset-1'}
-				hidden md:block text-xl text-indigo-700 underline hover:underline-offset-8 transition-all ease-in-out`}
-			>home</a
-		>
-		<a
-			aria-current={$page.url.pathname === '/projects'}
-			href="/projects"
-			class={`
-				${$page.url.pathname === '/projects' ? 'text-indigo-900 font-semibold underline-offset-4' : 'underline-offset-1'}
-				hidden md:block text-xl text-indigo-700 underline hover:underline-offset-8 transition-all ease-in-out`}
-			>projects</a
-		>
-		<a
-			aria-current={$page.url.pathname === '/contact'}
-			href="/contact"
-			class={`
-				${$page.url.pathname === '/contact' ? 'text-indigo-900 font-semibold underline-offset-4' : 'underline-offset-1'}
-				hidden md:block text-xl text-indigo-700 underline hover:underline-offset-8 transition-all ease-in-out`}
-			>contact</a
-		>
-		<button class="ml-auto" onclick={() => ToggleMobileMenu(true)}
-			><MenuIcon class="block md:hidden  text-indigo-700" style="font-size:1.5em" /></button
-		>
-	</nav>
+<nav class="nav-menu">
+  <a href="/" class="accent-text nav-name-type">
+    <span>Ethan McIntyre</span>
+    {#if page.route.id !== "/"}
+      &mdash; {page.route.id}
+    {/if}
+  </a>
+  <a href="/" class={[ page.route.id && 'selected-nav-item' ]}>Home</a>
+  <a href="projects" class={[ page.route.id && 'selected-nav-item' ]}>Projects</a>
+  <a href="contact" class={[ page.route.id && 'selected-nav-item' ]}>Contact</a>
+</nav>
 
-	{#key data.pathname}
-		<div
-			id="main-container"
-			class={`flex grow w-full
-      ${$page.url.pathname === '/projects' ? 'flex-col' : ''}
-      overflow-y-scroll overflow-x-hidden m-0 `}
-			in:fade={{ duration: 300, delay: 400 }}
-			out:fade={{ duration: 300 }}
-		>
-			{@render children?.()}
-		</div>
-	{/key}
+{#key data.pathname}
+  <main
+    class="page-content"
+    in:fade={{ duration: 300, delay: 500 }}
+    out:fade={{ duration: 300 }}
+  >
+    {@render children?.()}
+  </main>
+{/key}
 
-	{#if mobileMenuOpen === true}
-		<div
-			transition:slide={{ delay: 0, duration: 300, easing: quintOut, axis: 'x' }}
-			class={`bg-indigo-700 absolute w-full h-full z-50 p-20 block md:hidden`}
-		>
-			<button class="absolute right-4 top-4" onclick={() => ToggleMobileMenu(false)}
-				><CloseIcon
-					class="block md:hidden text-white hover:bg-red-700"
-					style="font-size:2em"
-				/></button
-			>
-			<div class="flex flex-col gap-5">
-				<a
-					aria-current={$page.url.pathname === '/'}
-					href="/"
-					onclick={() => ToggleMobileMenu(false)}
-					class={`
-				${$page.url.pathname === '/' ? 'text-white font-bold underline-offset-4' : 'underline-offset-2'}
-				text-4xl text-gray-300 underline hover:underline-offset-8 transition-all ease-in-out`}>home</a
-				>
-				<a
-					aria-current={$page.url.pathname === '/projects'}
-					href="/projects"
-					onclick={() => ToggleMobileMenu(false)}
-					class={`
-				${$page.url.pathname === '/projects' ? 'text-white font-bold underline-offset-4' : 'underline-offset-2'}
-				text-4xl text-gray-300 underline hover:underline-offset-8 transition-all ease-in-out`}>projects</a
-				>
-				<a
-					aria-current={$page.url.pathname === '/contact'}
-					href="/contact"
-					onclick={() => ToggleMobileMenu(false)}
-					class={`
-				${$page.url.pathname === '/contact' ? 'text-white font-bold underline-offset-4' : 'underline-offset-2'}
-				text-4xl text-gray-300 underline hover:underline-offset-8 transition-all ease-in-out`}>contact</a
-				>
-			</div>
-		</div>
-	{/if}
-</div>
+<style>
+  :global(body, html) {
+    height: 100dvh;
+    max-height: 100dvh;
+    margin: 0;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
 
-<!-- Footer idea for now
-<footer class="flex items-center px-14 py-6 border-b-2 bg-white gap-4"></footer>
--->
+  .page-content {
+    flex-grow: 1;
+    margin: 0;
+  }
 
-<style lang="postcss">
-	:global(html) {
-		background-color: theme(colors.neutral.300);
-	}
+  .selected-nav-item {
+    text-decoration: solid !important;
+  }
 
-	:global(body, html) {
-		height: 100%;
-		margin: 0;
-		width: 100%;
-		position: relative;
-	}
+  .nav-menu {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    justify-content: flex-end;
+    top: 0;
+    left: 0;
+    padding: var(--spacing-sm);
+    font-size: var(--text-md);
+    gap: var(--spacing-sm);
+    background-color: var(--bg-inverse);
+    transition: width 2s;
+    border-bottom: 2px solid var(--blue);
+  }
+
+  .nav-menu > a {
+    color: var(--text-inverse);
+    padding: var(--spacing-xs);
+    text-decoration: none;
+  }
+
+  .nav-menu > a:hover {
+    background-color: oklch(from var(--bg-inverse) calc(l - 0.1) c h);
+  }
+
+  .nav-menu > a:not(.nav-name-type) {
+    padding: var(--spacing-xs);
+    border-radius: var(--rounding-xs);
+    transition: all;
+    transition-duration: 100ms;
+    text-transform: lowercase;
+  }
+
+  .nav-name-type {
+    margin-right: auto;
+  }
 </style>
