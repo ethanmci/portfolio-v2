@@ -1,41 +1,51 @@
 <script lang="ts">
-import ProjectTile from "$lib/components/ProjectTile.svelte";
-import { onMount } from "svelte";
-import { urlFor } from "$lib/sanity";
-import type { PageData } from "./$types";
+  import ProjectTile from "$lib/components/ProjectTile.svelte";
+  import { onMount } from "svelte";
+  import { urlFor } from "$lib/sanity";
+  import type { PageData } from "./$types";
 
-interface Props {
-  data: {
-    projects: Project[]
-  };
-}
+  interface Props {
+    data: {
+      projects: Project[];
+    };
+  }
 
-const { data }: Props = $props();
+  const { data }: Props = $props();
 
-let ready = $state(false);
-onMount(() => {
-  ready = true;
-});
+  let ready = $state(false);
+  onMount(() => {
+    ready = true;
+  });
 </script>
 
 <svelte:head>
-    <title>Projects - Ethan McIntyre</title>
+  <title>Projects - Ethan McIntyre</title>
 </svelte:head>
 
-<div class="noise-bg py-8 px-4 md:px-32 mx-auto flex-1 flex-grow">
-    <h2 class="mb-4 md:mr-6 font-bold font-deco text-5xl lg:text-left text-center">Projects</h2>
-    {#if ready}
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 py-2">
-            {#each data?.projects as project, index}
-            <ProjectTile
-                transitionDelay={10 * index}
-                url={`projects/${project?.slug.current}`}
-                title={project?.title}
-                year={new Date(project?.date).getFullYear().toString()}
-                desc={project?.summary}
-                image={urlFor(project.cover.asset).width(600).height(500).url()}
-            />
-            {/each}
-        </div>
-    {/if}
-</div>
+<section class="project-main">
+  {#if ready}
+    {#each data?.projects as project, index}
+      <ProjectTile
+        transitionDelay={10 * index}
+        url={`projects/${project?.slug.current}`}
+        title={project?.title}
+        year={new Date(project?.date).getFullYear().toString()}
+        desc={project?.summary}
+        image={urlFor(project.cover.asset).width(600).height(500).url()}
+      />
+    {/each}
+  {/if}
+</section>
+
+<style>
+  .project-main {
+    background-color: var(--bg-primary);
+    max-width: 100%;
+    padding: var(--spacing-md);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: var(--spacing-md);
+  }
+</style>
