@@ -1,46 +1,149 @@
 <script lang="ts">
-import { fly } from "svelte/transition";
-import { onMount } from "svelte";
-import { quartInOut } from "svelte/easing";
-interface Props {
-  title: string;
-  year: string;
-  desc: string;
-  image: string;
-  url: string;
-  transitionDelay: number;
-}
+  import { fly } from "svelte/transition";
+  import { onMount } from "svelte";
+  import { quartInOut } from "svelte/easing";
+  interface Props {
+    title: string;
+    year: string;
+    desc: string;
+    image: string;
+    url: string;
+    transitionDelay: number;
+  }
 
-const { title, year, desc, image, url, transitionDelay }: Props = $props();
-let ready = $state(false);
-onMount(() => {
-  ready = true;
-});
+  const { title, year, desc, image, url, transitionDelay }: Props = $props();
+  let ready = $state(false);
+  onMount(() => {
+    ready = true;
+  });
 </script>
+
 {#if ready}
-<a href={url} transition:fly={{ delay: 5 * (transitionDelay * 2), duration: 1000, y: 200, opacity: 0.0, easing: quartInOut }}>
-	<button class="h-auto md:h-full flex group col-span-3 md:col-span-1 mx-auto" tabindex="0">
-		<div
-			class="relative bg-stone-50 text-stone-800 border-2 border-stone-50 group-hover:border-indigo-500 shadow-sm group-hover:shadow-lg transition-all ease-in-out"
-		>
-			<div class="relative">
-				<img src={image} alt="placeholder alt text" class="w-full mx-auto mb-4" />
-				<div class="absolute -bottom-4 flex w-full px-4 text-stone-50">
-					<span class="flex-1">
-						<h3 class="text-2xl text-left font-deco font-bold underline w-max p-2 bg-stone-700 rounded-sm shadow-sm max-w-64">
-							{title}
-						</h3>
-					</span>
-					<p class="place-self-end text-right font-deco text-2xl w-max p-2 bg-stone-700 rounded-sm shadow-sm">
-						{year}
-					</p>
-				</div>
-			</div>
-			<div class="p-4">
-				<span>{desc}</span>
-			</div>
-		</div>
-	</button>
-</a>
+  <a
+    role="button"
+    class="tile-body"
+    href={url}
+    transition:fly={{
+      delay: 5 * (transitionDelay * 2),
+      duration: 1000,
+      y: 200,
+      opacity: 0.0,
+      easing: quartInOut,
+    }}
+  >
+    <div class="project-image-container">
+      <span class="project-date">{year}</span>
+      <span class="project-title">{title}</span>
+      <div class="project-desc-wrapper">
+        <span class="project-desc">{desc}</span>
+      </div>
+      <img class="project-image" src={image} alt="placeholder alt text" />
+    </div>
+  </a>
 {/if}
 
+<style scoped>
+  .tile-body {
+    position: relative;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-radius: var(--rounding-md);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-decoration: none;
+    transform-style: preserve-3d;
+    transition: all 2ms;
+  }
+
+  .tile-body:is(:hover, :focus) {
+    outline: 2px solid var(--text-primary);
+  }
+
+  @property --gradient-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @keyframes rotateGradient {
+    0% { --gradient-angle: 0deg}
+    100% { --gradient-angle: 360deg}
+  }
+
+  .tile-body:is(:hover, :focus)::after {
+    content: "";
+    position: absolute;
+    inset: 0px;
+    transform: translate3d(0, 0, -1px);
+    animation: 10s rotateGradient infinite;
+    background: linear-gradient(var(--gradient-angle),var(--mint) 0%, var(--blue) 50%, var(--green) 100%);
+    filter: blur(7px);
+  }
+
+  .project-date {
+    position: absolute;
+    margin: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    top: 0;
+    left: 0;
+    background-color: var(--blue);
+  }
+
+  .project-title {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: var(--spacing-sm);
+    font-family: var(--font-accent);
+    background-color: var(--blue);
+    border-width: var(--spacing-sm) 0 0 var(--spacing-sm);
+    border-style: solid;
+    border-color: var(--bg-secondary);
+    border-top-left-radius: var(--rounding-lg);
+    color: var(--green);
+    max-width: 66%;
+    text-align: right;
+  }
+
+  .project-desc-wrapper {
+    content-visibility: hidden;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    z-index: 10;
+    transition: all 100ms;
+  }
+
+  .tile-body:hover .project-desc-wrapper {
+    background-color: oklch(from var(--bg-primary) l c h / calc(0.3));
+    content-visibility: visible;
+  }
+
+  .project-desc {
+    margin: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    color: var(--text-secondary);
+    background-color: var(--bg-primary);
+    border-radius: var(--rounding-sm);
+    width: 100%;
+    text-align: center;
+  }
+
+  .project-image-container {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    aspect-ratio: 1/1;
+  }
+
+  .project-image {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
