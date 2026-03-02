@@ -1,0 +1,10 @@
+{
+  "linter": {
+    "rules": {
+      "recommended": true,
+      "style": {
+        "useConst": "info"
+      }
+    }
+  }
+}
