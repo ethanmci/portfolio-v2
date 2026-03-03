@@ -16,14 +16,17 @@
 
 <nav class="nav-menu">
   <a href="/" class="accent-text nav-name-type">
-    <span>Ethan McIntyre</span>
-    {#if page.route.id !== "/"}
-      &mdash; {page.route.id}
-    {/if}
+    <h1>Ethan McIntyre</h1>
   </a>
-  <a href="/" class={[ page.route.id && 'selected-nav-item' ]}>Home</a>
-  <a href="projects" class={[ page.route.id && 'selected-nav-item' ]}>Projects</a>
-  <a href="contact" class={[ page.route.id && 'selected-nav-item' ]}>Contact</a>
+  <a href="/" class={[page.route.id === "/" && "selected-nav-item"]}>Home</a>
+  <a
+    href="/projects"
+    class={[page.route.id === "/projects" && "selected-nav-item"]}>Projects</a
+  >
+  <a
+    href="/contact"
+    class={[page.route.id === "/contact" && "selected-nav-item"]}>Contact</a
+  >
 </nav>
 
 {#key data.pathname}
@@ -36,10 +39,9 @@
   </main>
 {/key}
 
-<style>
+<style scoped>
   :global(body, html) {
     height: 100dvh;
-    max-height: 100dvh;
     margin: 0;
     width: 100%;
     position: relative;
@@ -50,6 +52,8 @@
   .page-content {
     flex-grow: 1;
     margin: 0;
+    max-width: 100%;
+    overflow-y: auto;
   }
 
   .selected-nav-item {
@@ -58,18 +62,32 @@
 
   .nav-menu {
     display: flex;
+    z-index: 10;
     flex-direction: row;
     justify-items: center;
     align-items: center;
     justify-content: flex-end;
     top: 0;
     left: 0;
+    right: 0;
     padding: var(--spacing-sm);
     font-size: var(--text-md);
     gap: var(--spacing-sm);
     background-color: var(--bg-inverse);
     transition: width 2s;
     border-bottom: 2px solid var(--blue);
+  }
+  .nav-menu::after {
+    height: initial;
+    display: flex;
+    position: relative;
+    flex-grow: 1;
+  }
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    .nav-menu {
+    }
   }
 
   .nav-menu > a {
@@ -92,5 +110,9 @@
 
   .nav-name-type {
     margin-right: auto;
+  }
+
+  h1 {
+    font-size: larger;
   }
 </style>
