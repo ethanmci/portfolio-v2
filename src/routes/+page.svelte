@@ -39,7 +39,7 @@ onMount(() => {
 
 <style scoped>
   .landing-bg {
-    width: 100vw;
+    width: 100%;
     background-color: var(--blue);
     height: 100%;
     display: flex;
