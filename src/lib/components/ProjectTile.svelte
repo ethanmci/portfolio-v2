@@ -73,7 +73,7 @@
     100% { --gradient-angle: 360deg}
   }
 
-  .tile-body:is(:hover, :focus)::after {
+  .tile-body:is(:hover, :focus)::before {
     content: "";
     position: absolute;
     inset: 0px;
