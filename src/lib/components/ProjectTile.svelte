@@ -55,6 +55,7 @@
     text-decoration: none;
     transform-style: preserve-3d;
     transition: all 2ms;
+    border: var(--border-width) solid var(--bg-tertiary);
   }
 
   .tile-body:is(:hover, :focus) {
