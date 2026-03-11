@@ -3,9 +3,6 @@
   import { page } from "$app/state";
   import { fade, slide } from "svelte/transition";
   import { quintOut } from "svelte/easing";
-  // @ts-ignore
-  import MenuIcon from "virtual:icons/mdi/menu"; // @ts-ignore
-  import CloseIcon from "virtual:icons/mdi/close";
   const { data, children } = $props();
   let mobileMenuOpen: boolean = $state(false);
 
@@ -73,7 +70,7 @@
     padding: var(--spacing-sm);
     font-size: var(--text-md);
     gap: var(--spacing-sm);
-    background-color: var(--bg-inverse);
+    background-color: var(--bg-tertiary);
     transition: width 2s;
     border-bottom: 2px solid var(--blue);
   }
@@ -91,13 +88,13 @@
   }
 
   .nav-menu > a {
-    color: var(--text-inverse);
+    color: var(--text-primary);
     padding: var(--spacing-xs);
     text-decoration: none;
   }
 
   .nav-menu > a:hover {
-    background-color: oklch(from var(--bg-inverse) calc(l - 0.1) c h);
+    background-color: oklch(from var(--bg-primary) calc(l - 0.1) c h);
   }
 
   .nav-menu > a:not(.nav-name-type) {
