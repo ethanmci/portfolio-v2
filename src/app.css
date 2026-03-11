@@ -15,8 +15,8 @@
   --mint: oklch(90.1% 0.134 155.4);
   --green: oklch(0.8123 0.227379 132.5137);
   --black: oklch(0.20 0.02 277.21);
-  --dark-gray: oklch(0.30 0.01 277.21);
-  --mid-gray: oklch(0.40 0.01 277.21);
+  --dark-gray: oklch(0.25 0.01 277.21);
+  --mid-gray: oklch(0.28 0.01 277.21);
 
   --text-primary: var(--white);
   --text-secondary: var(--off-white);
@@ -37,6 +37,8 @@
   --rounding-sm: 0.1em;
   --rounding-md: 0.5em;
   --rounding-lg: 1em;
+
+  --border-width: 2px;
 
   /* typography */
   --text-md: 1.5em;
