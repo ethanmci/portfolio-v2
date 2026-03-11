@@ -40,3 +40,4 @@ You can preview the production build with `npm run preview`.
 ## Credits
 
 [Svelte Turnstile component by ghostdevv](https://github.com/ghostdevv/svelte-turnstile)
+[Icons from Lucilde](https://lucide.dev/)
