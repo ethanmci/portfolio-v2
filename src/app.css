@@ -14,6 +14,7 @@
   --off-white: oklch(0.87 0 0);
   --mint: oklch(90.1% 0.134 155.4);
   --green: oklch(0.8123 0.227379 132.5137);
+  --red: oklch(58.272% 0.21639 32.747);
   --black: oklch(0.20 0.02 277.21);
   --dark-gray: oklch(0.25 0.01 277.21);
   --mid-gray: oklch(0.28 0.01 277.21);
@@ -66,4 +67,12 @@
       oklch(26.8% 0.007 34.298 / 0.5),
       oklch(70.9% 0.01 56.259 / 0.1)
     ), url(../src/lib/assets/noise.svg);
+}
+
+dialog {
+  animation: fade-out 0.7s ease-out;
+}
+
+dialog:open {
+  animation: fade-in 0.7s ease-out;
 }
