@@ -37,7 +37,7 @@
       <div class="project-desc-wrapper">
         <span class="project-desc">{desc}</span>
       </div>
-      <img class="project-image" src={image} alt="placeholder alt text" />
+      <img class="project-image" src={image} alt="placeholder alt text" fetchpriority="high"/>
     </div>
   </a>
 {/if}
