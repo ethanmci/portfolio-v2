@@ -43,8 +43,8 @@
         year={new Date(project?.date).getFullYear().toString()}
         desc={project?.summary}
         image={urlFor(project.cover.asset)
-          .width(600)
-          .height(500)
+          .width(1000)
+          .height(1000)
           .format("webp")
           .quality(100)
           .url()}
