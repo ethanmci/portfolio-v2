@@ -58,30 +58,10 @@
     border: var(--border-width) solid var(--bg-tertiary);
   }
 
-  .tile-body:is(:hover, :focus) {
-    outline: 2px solid var(--text-primary);
+  .tile-body:hover {
+    outline: 2px solid var(--text-secondary);
   }
 
-  @property --gradient-angle {
-    syntax: '<angle>';
-    initial-value: 0deg;
-    inherits: false;
-  }
-
-  @keyframes rotateGradient {
-    0% { --gradient-angle: 0deg}
-    100% { --gradient-angle: 360deg}
-  }
-
-  .tile-body:is(:hover, :focus)::before {
-    content: "";
-    position: absolute;
-    inset: 0px;
-    transform: translate3d(0, 0, -1px);
-    animation: 10s rotateGradient infinite;
-    background: linear-gradient(var(--gradient-angle),var(--mint) 0%, var(--blue) 50%, var(--green) 100%);
-    filter: blur(7px);
-  }
 
   .project-date {
     position: absolute;
@@ -117,12 +97,14 @@
     justify-items: center;
     align-items: center;
     z-index: 10;
-    transition: all 100ms;
+    transition: opacity 400ms;
+    opacity: 0;
   }
 
   .tile-body:hover .project-desc-wrapper {
     background-color: oklch(from var(--bg-primary) l c h / calc(0.3));
     content-visibility: visible;
+    opacity: 1;
   }
 
   .project-desc {

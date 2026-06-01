@@ -2,7 +2,7 @@
   import ProjectTile from "$lib/components/ProjectTile.svelte";
   import { onMount } from "svelte";
   import { urlFor } from "$lib/sanity";
-  import type { PageData } from "./$types";
+  import { onNavigate } from "$app/navigation";
 
   interface Props {
     data: {
@@ -16,10 +16,21 @@
   onMount(() => {
     ready = true;
   });
+
+  onNavigate((nav) => {
+    if (!document.startViewTransition) return;
+    return new Promise((resolve) => {
+      document.startViewTransition(async () => {
+        resolve();
+        await nav.complete;
+      });
+    });
+  });
 </script>
 
 <svelte:head>
   <title>Projects - Ethan McIntyre</title>
+  <meta name="description" content="A collection of projects that I've worked on!">
 </svelte:head>
 
 <section class="project-main">
@@ -31,7 +42,12 @@
         title={project?.title}
         year={new Date(project?.date).getFullYear().toString()}
         desc={project?.summary}
-        image={urlFor(project.cover.asset).width(600).height(500).url()}
+        image={urlFor(project.cover.asset)
+          .width(600)
+          .height(500)
+          .format("webp")
+          .quality(100)
+          .url()}
       />
     {/each}
   {/if}
@@ -47,5 +63,11 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     gap: var(--spacing-md);
+  }
+
+  @media only screen and (max-width: 600px) {
+    .project-main {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

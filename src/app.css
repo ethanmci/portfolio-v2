@@ -29,6 +29,8 @@
   --bg-tertiary: var(--mid-gray);
   --bg-inverse: var(--white);
 
+  --modal-overlay: oklch(from var(--dark-gray) l c h / 0.8);
+
   --spacing-xs: 0.25em;
   --spacing-sm: 0.5em;
   --spacing-md: 1em;
@@ -69,10 +71,20 @@
     ), url(../src/lib/assets/noise.svg);
 }
 
-dialog {
-  animation: fade-out 0.7s ease-out;
+@keyframes slide-in {
+  from { transform: translateY(-10%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
-dialog:open {
-  animation: fade-in 0.7s ease-out;
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 1000ms;
+}
+
+@media (prefers-reduced-motion) {
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation: none !important;
+	}
 }

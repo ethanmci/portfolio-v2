@@ -23,5 +23,4 @@ export class ProjectState {
     if(!this.#projectModal?.open) return
     this.#projectModal?.close()
   }
-
 }

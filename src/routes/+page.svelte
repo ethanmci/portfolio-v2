@@ -22,10 +22,11 @@ onMount(() => {
 
 <svelte:head>
 	<title>Home - Ethan McIntyre</title>
+  <meta name="description" content="">
 </svelte:head>
 
 <div class="landing-bg">
-  <img class="landing-img" src={EthanImg} alt="Ethan McIntyre sitting on a rock"/>
+  <img class="landing-img" src={EthanImg} alt="Ethan McIntyre standing in front of a Japanese rock garden"/>
   <section class="landing-content" in:fade>
     <h1 class="name-type">Ethan<br/>McIntyre</h1>
     <span class="name-subtitle">Web Developer</span>
