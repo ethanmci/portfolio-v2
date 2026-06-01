@@ -1,13 +1,13 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import { PortableText } from "@portabletext/svelte";
-  import { ProjectState } from "./ProjectState.svelte";
-  import Chevron from "$lib/components/icons/Chevron.svelte";
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
   import { quartInOut } from "svelte/easing";
-  import Close from "$lib/components/icons/Close.svelte";
   import { urlFor } from "$lib/sanity";
+  import { PortableText } from "@portabletext/svelte";
+  import { ProjectState } from "./ProjectState.svelte";
+  import Chevron from "$lib/components/icons/Chevron.svelte";
+  import Close from "$lib/components/icons/Close.svelte";
   interface Props {
     data: PageData;
   }
@@ -118,7 +118,10 @@
           aria-label="expand image"
           onclick={() => (projectState.expandedImage = image)}
         >
-          <img src={urlFor(image).format("webp").quality(100).url()} alt="temp placeholder text" />
+          <img
+            src={urlFor(image).format("webp").quality(100).url()}
+            alt="temp placeholder text"
+          />
         </button>
       {/each}
     </section>
