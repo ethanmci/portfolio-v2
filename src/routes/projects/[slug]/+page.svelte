@@ -7,6 +7,7 @@
   import { fly } from "svelte/transition";
   import { quartInOut } from "svelte/easing";
   import Close from "$lib/components/icons/Close.svelte";
+  import { urlFor } from "$lib/sanity";
   interface Props {
     data: PageData;
   }
@@ -89,7 +90,10 @@
         }}
       >
         <!-- svelte-ignore a11y_missing_attribute -->
-        <img class="project-cover-img" src={data.project.cover} />
+        <img
+          class="project-cover-img"
+          src={urlFor(data.project.cover).format("webp").quality(100).url()}
+        />
       </div>
     </section>
     {#if data.project.carousel.length > 0}
@@ -114,7 +118,7 @@
           aria-label="expand image"
           onclick={() => (projectState.expandedImage = image)}
         >
-          <img src={image} alt="temp placeholder text" />
+          <img src={urlFor(image).format("webp").quality(100).url()} alt="temp placeholder text" />
         </button>
       {/each}
     </section>
