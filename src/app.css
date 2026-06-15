@@ -49,6 +49,10 @@
   --font-normal: "Inter", sans-serif;
   --font-accent: "Boldonse", system-ui;
 
+  /* animation durations */
+  --anim-fast: 1000ms;
+  --anim-medium: 2000ms;
+  --anim-slow: 3500ms;
 
   font-family: var(--font-normal);
   font-optical-sizing: auto;
@@ -72,7 +76,7 @@
 }
 
 @keyframes slide-in {
-  from { transform: translateY(-10%); opacity: 0; }
+  from { transform: translateY(-5vh); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
 
@@ -88,3 +92,5 @@
 		animation: none !important;
 	}
 }
+
+

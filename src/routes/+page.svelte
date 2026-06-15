@@ -86,12 +86,18 @@ onMount(() => {
     margin: 0;
     line-height: 140%;
     display: block;
+    animation-name: slide-in;
+    animation-duration: var(--anim-fast);
+    animation-fill-mode: both;
   }
 
   .name-subtitle {
     font-size: 2em;
-    background-color: var(--blue);
     display: inline-block;
+    animation-name: slide-in;
+    animation-duration: var(--anim-fast);
+    animation-delay: var(--anim-fast);
+    animation-fill-mode: both;
   }
 
 </style>
