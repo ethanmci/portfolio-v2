@@ -1,14 +1,12 @@
 <script lang="ts">
-import EthanImg from "$lib/assets/photo_of_me.jpg"; // @ts-ignore (virtual: flags TS checker incorrectly)
-import GitHubIcon from "virtual:icons/mdi/github-box"; // @ts-ignore
-import LinkedinIcon from "virtual:icons/mdi/linkedin"; // @ts-ignore
-import ForwardArrow from "virtual:icons/ic/baseline-arrow-forward";
+import EthanImg from "$lib/assets/newphoto.jpg"; // @ts-ignore (virtual: flags TS checker incorrectly)
 import { PortableText } from "@portabletext/svelte";
 import type { PageData } from "./$types";
 import { onMount } from "svelte";
 import { fly } from "svelte/transition";
 import { backOut, quartInOut, quartOut } from "svelte/easing";
-import IconButton from "$lib/components/IconButton.svelte";
+import { fade, slide } from "svelte/transition";
+
 
 interface Props {
   data: PageData;
@@ -24,64 +22,82 @@ onMount(() => {
 
 <svelte:head>
 	<title>Home - Ethan McIntyre</title>
+  <meta name="description" content="">
 </svelte:head>
 
-<div
-	class="h-full w-full flex flex-col md:flex-row overflow-hidden bg-stone-50 transition-all ease-in-out"
->
-	<div class="flex-grow-0 h-1/3 md:h-full md:w-1/3 overflow-hidden relative md:border-r-2">
-		{#if ready}
-			<img
-				transition:fly={{ delay: 200, duration: 2500, x: -1000, opacity: 0.0, easing: quartOut }}
-				class="object-cover md:h-full"
-				src={EthanImg}
-				alt="Ethan McIntyre"
-			/>
-		{/if}
-	</div>
-	<div class="grow my-auto p-4 md:p-32 text-xl">
-		{#if ready}
-			<h2
-				transition:fly={{ delay: 0, duration: 1000, x: 200, opacity: 0.2, easing: quartInOut }}
-				class="text-5xl md:text-6xl font-deco font-bold italic underline mb-2 tracking-tight subpixel-antialiased"
-			>
-				Hello!
-			</h2>
-			<div
-				id="bioContainer"
-				class="mb-4"
-				transition:fly={{ delay: 100, duration: 1500, y: 200, opacity: 0.0, easing: quartInOut }}
-			>
-				<PortableText components={{}} value={data?.content[0]?.content || undefined}></PortableText>
-			</div>
-			<a href="/projects">
-				<button
-					transition:fly={{ delay: 500, duration: 1500, y: 300, opacity: 0.0, easing: quartInOut }}
-					class="w-full h-28 flex items-center align-middle font-deco font-bold p-4 text-stone-50 bg-indigo-700 hover:bg-indigo-900 hover:shadow-sm rounded-sm transition-all ease-in-out"
-					>Check out my projects<ForwardArrow class="text-2xl my-auto ml-2" /></button
-				>
-			</a>
-			<div
-				class="flex gap-4 w-full my-4"
-			>
-				<IconButton url="https://github.com/ethanmci" colour="stone"><GitHubIcon class="text-2xl mr-4 my-auto"/>GitHub</IconButton>
-				<IconButton url="https://www.linkedin.com/in/ethansndrmc/" colour="stone"><LinkedinIcon class="text-2xl mr-4 my-auto" />LinkedIn</IconButton>
-			</div>
-		{/if}
-	</div>
+<div class="landing-bg">
+  <img class="landing-img" src={EthanImg} alt="Ethan McIntyre standing in front of a Japanese rock garden"/>
+  <section class="landing-content" in:fade>
+    <h1 class="name-type">Ethan<br/>McIntyre</h1>
+    <span class="name-subtitle">Web Developer</span>
+    <a href="/projects" class="landing-btn" role="button">See my work</a>
+  </section>
 </div>
 
-<style lang="postcss">
+<style scoped>
+  .landing-bg {
+    width: 100%;
+    background-color: var(--blue);
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
 
-	:global(#bioContainer a):not(.icon-link) {
-		text-decoration: underline;
-		color: theme(colors.indigo.700);
-		transition: 0.3s;
-	}
+  .landing-img {
+    height: 100%;
+    width: 33%;
+    object-fit: cover;
+  }
 
-	:global(#bioContainer a):not(.icon-link):hover {
-		text-decoration: underline;
-		text-underline-offset: 8px;
-		color: theme(colors.indigo.800);
-	}
+  .landing-content {
+    color: var(--text-highlight);
+    border-radius: var(--spacing-sm);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .landing-btn {
+    cursor: pointer;
+    border-radius: var(--rounding-lg);
+    margin-top: var(--spacing-lg);
+    background-color: var(--white);
+    color: var(--text-inverse);
+    width: 66%;
+    border: none;
+    outline: none;
+    padding: var(--spacing-sm);
+    font-size: medium;
+    text-transform: lowercase;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms ease-in-out;
+  }
+
+  .landing-btn:hover, .landing-btn:focus {
+    outline: solid 2px var(--blue);
+    background-color: oklch(from var(--bg-inverse) calc(l - 0.1) c h);
+    box-shadow: 0 0px 20px var(--text-highlight);
+  }
+
+  .name-type {
+    font-size: 5em;
+    margin: 0;
+    line-height: 140%;
+    display: block;
+    animation-name: slide-in;
+    animation-duration: var(--anim-fast);
+    animation-fill-mode: both;
+  }
+
+  .name-subtitle {
+    font-size: 2em;
+    display: inline-block;
+    animation-name: slide-in;
+    animation-duration: var(--anim-fast);
+    animation-delay: var(--anim-fast);
+    animation-fill-mode: both;
+  }
+
 </style>

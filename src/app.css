@@ -1,6 +1,71 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+.boldonse-regular {
+  font-family: "Boldonse", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  /* colors */
+  --blue: oklch(0.3648 0.2338 269.89);
+  --white: oklch(0.97 0 0);
+  --off-white: oklch(0.87 0 0);
+  --mint: oklch(90.1% 0.134 155.4);
+  --green: oklch(0.8123 0.227379 132.5137);
+  --red: oklch(58.272% 0.21639 32.747);
+  --black: oklch(0.20 0.02 277.21);
+  --dark-gray: oklch(0.25 0.01 277.21);
+  --mid-gray: oklch(0.28 0.01 277.21);
+
+  --text-primary: var(--white);
+  --text-secondary: var(--off-white);
+  --text-highlight: var(--green);
+  --text-inverse: var(--black);
+
+  --bg-primary: var(--black);
+  --bg-secondary: var(--dark-gray);
+  --bg-tertiary: var(--mid-gray);
+  --bg-inverse: var(--white);
+
+  --modal-overlay: oklch(from var(--dark-gray) l c h / 0.8);
+
+  --spacing-xs: 0.25em;
+  --spacing-sm: 0.5em;
+  --spacing-md: 1em;
+  --spacing-lg: 2em;
+
+  --rounding-xs: 0.05em;
+  --rounding-sm: 0.1em;
+  --rounding-md: 0.5em;
+  --rounding-lg: 1em;
+
+  --border-width: 2px;
+
+  /* typography */
+  --text-md: 1.5em;
+  --text-lg: 2em;
+  --font-normal: "Inter", sans-serif;
+  --font-accent: "Boldonse", system-ui;
+
+  /* animation durations */
+  --anim-fast: 1000ms;
+  --anim-medium: 2000ms;
+  --anim-slow: 3500ms;
+
+  font-family: var(--font-normal);
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+}
+
+
+:is(h1, h2, h3, h4, h5, h6), .accent-text {
+  font-family: var(--font-accent);
+  margin: 0;
+}
 
 .noise-bg {
   background: linear-gradient(
@@ -9,3 +74,23 @@
       oklch(70.9% 0.01 56.259 / 0.1)
     ), url(../src/lib/assets/noise.svg);
 }
+
+@keyframes slide-in {
+  from { transform: translateY(-5vh); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 1000ms;
+}
+
+@media (prefers-reduced-motion) {
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation: none !important;
+	}
+}
+
+
